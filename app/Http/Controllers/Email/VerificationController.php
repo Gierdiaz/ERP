@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Email;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Email\EmailVerificationRequest;
 use App\Notifications\Auth\VerifyEmailNotification;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class VerificationController extends Controller
@@ -16,7 +15,7 @@ class VerificationController extends Controller
 
         //Log::channel('verification')->info('User email verified.', ['email' => $request->user()->email]);
         Log::channel('verification')->info('Email verification request received.', [
-            'id' => $request->route('id'),
+            'id'   => $request->route('id'),
             'hash' => $request->route('hash'),
         ]);
 

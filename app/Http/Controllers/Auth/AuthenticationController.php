@@ -23,7 +23,6 @@ class AuthenticationController extends Controller
                 throw new \Exception('Error creating user');
             }
 
-            //$user->notify(new VerifyEmailNotification());
             $user->notify(new VerifyEmailNotification($user));
 
             Log::channel('register')->info('New user registered.', ['email' => $request->email]);

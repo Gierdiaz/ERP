@@ -139,14 +139,14 @@ return [
 
         'verification_verify' => [
             'driver' => 'single',
-            'path' => storage_path('Verify/verification_verify.log'),
-            'level' => 'debug',
+            'path'   => storage_path('Verify/verification_verify.log'),
+            'level'  => 'debug',
         ],
-    
+
         'verification_resend' => [
             'driver' => 'single',
-            'path' => storage_path('Resend/verification_resend.log'),
-            'level' => 'debug',
+            'path'   => storage_path('Resend/verification_resend.log'),
+            'level'  => 'debug',
         ],
 
     ],
