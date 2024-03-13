@@ -3,91 +3,73 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\{LoginFormRequest, RegisterFormRequest};
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\{Auth, Hash, Validator};
+use App\Notifications\Auth\VerifyEmailNotification;
+use Illuminate\Support\Facades\{Auth, Hash, Log};
 
 class AuthenticationController extends Controller
 {
-    public function register(Request $request)
+    public function register(RegisterFormRequest $request)
     {
-        // Validation of input data
-        $validator = Validator::make($request->all(), [
-            'name'     => ['required', 'string'],
-            'email'    => ['required', 'email'],
-            'password' => ['required', 'string', 'min:3'],
-        ]);
-
-        // If validation fails, return errors
-        if ($validator->fails()) {
-            return response()->json(['Errors' => $validator->errors()], 422);
-        }
-
         try {
-            // User creation
             $user = User::create([
                 'name'     => $request->name,
                 'email'    => $request->email,
                 'password' => Hash::make($request->password),
             ]);
 
-            // If user creation fails, throw an exception
             if (!$user) {
                 throw new \Exception('Error creating user');
             }
 
-            // Return a success response with the created user
+            //$user->notify(new VerifyEmailNotification());
+            $user->notify(new VerifyEmailNotification($user));
+
+            Log::channel('register')->info('New user registered.', ['email' => $request->email]);
+
             return response()->json([
-                'message' => 'User registered successfully',
+                'message' => 'User registered successfully.  Verification email sent to ' . $user->email,
                 'user'    => $user,
             ], 201);
 
         } catch (\Throwable $th) {
-            // Return an error response if an exception occurs
+            Log::channel('register')->error('Failed to register user.', ['error' => $th->getMessage()]);
+
             return response()->json([
                 'error' => 'Failed to register user',
             ], 500);
         }
     }
 
-    public function login(Request $request)
+    public function login(LoginFormRequest $request)
     {
-        // Validation of input data
-        $validator = Validator::make($request->all(), [
-            'email'       => ['required', 'email'],
-            'password'    => ['required', 'string'],
-            'device_name' => ['required', 'string'],
-        ]);
+        try {
+            $credentials = $request->only('email', 'password');
 
-        // If validation fails, return errors
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
+            if (!Auth::attempt($credentials)) {
+                Log::channel('login')->debug('Failed login attempt.', ['email' => $request->email, 'ip' => $request->ip()]);
 
-        // Get credentials from the request
-        $credentials = $request->only('email', 'password');
+                return response()->json([
+                    'message' => 'The provided credentials are incorrect.',
+                ], 401);
+            }
 
-        // Check if the user exists and the credentials are correct
-        if (!Auth::attempt($credentials)) {
-            // Invalid credentials
-            logger('Invalid credentials for email: ' . $request->email);
+            $user  = Auth::user();
+            $token = $user->createToken($request->device_name)->plainTextToken;
 
             return response()->json([
-                'message' => 'The provided credentials are incorrect.',
-            ], 401);
+                'Message'  => 'Login successful',
+                'Customer' => $user,
+                'Token'    => $token,
+            ], 200);
+
+        } catch (\Exception $e) {
+            Log::channel('login')->error('Failed to login.', ['error' => $e->getMessage(), 'ip' => $request->ip()]);
+
+            return response()->json([
+                'error' => 'Failed to login. Please try again later.',
+            ], 500);
         }
-
-        // Get the authenticated user
-        $user = Auth::user();
-
-        // Generate the Sanctum token
-        $token = $user->createToken($request->device_name)->plainTextToken;
-
-        // Return the success response
-        return response()->json([
-            'Message'  => 'Login successful',
-            'Customer' => $user,
-            'Token'    => $token,
-        ], 200);
     }
 }

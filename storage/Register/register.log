@@ -1,0 +1,3 @@
+[2024-03-13 17:10:00] local.ERROR: Failed to register user. {"error":"Call to undefined method Illuminate\\Notifications\\Notification::route()"} 
+[2024-03-13 17:11:14] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-03-13 17:27:50] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
