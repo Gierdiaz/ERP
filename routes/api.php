@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 // Routes accessible only for authenticated users
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('customers', [CustomerController::class, 'index'])->name('customers.index');
+    Route::get('/customers/{id}', [CustomerController::class, 'show']);
 });
 
 // Routes for email verification and email verification resend
