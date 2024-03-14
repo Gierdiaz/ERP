@@ -12,9 +12,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/customers/{id}', [CustomerController::class, 'show']);
 });
 
-Route::get('api/log', '\Opcodes\LogViewer\LogViewerController@index');
-
-
 // Routes for email verification and email verification resend
 Route::middleware('auth')->group(function () {
    
