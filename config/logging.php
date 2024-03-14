@@ -127,25 +127,25 @@ return [
 
         'register' => [
             'driver' => 'single',
-            'path'   => storage_path('Register/register.log'),
+            'path'   => storage_path('logs/Register/register.log'),
             'level'  => 'info',
         ],
 
         'login' => [
             'driver' => 'single',
-            'path'   => storage_path('Register/login.log'),
+            'path'   => storage_path('logs/Register/login.log'),
             'level'  => 'info',
         ],
 
         'verification_verify' => [
             'driver' => 'single',
-            'path'   => storage_path('Verify/verification_verify.log'),
+            'path'   => storage_path('logs/Verify/verification_verify.log'),
             'level'  => 'debug',
         ],
 
         'verification_resend' => [
             'driver' => 'single',
-            'path'   => storage_path('Resend/verification_resend.log'),
+            'path'   => storage_path('logs/Resend/verification_resend.log'),
             'level'  => 'debug',
         ],
 
