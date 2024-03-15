@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\{LoginFormRequest, RegisterFormRequest};
 use App\Models\User;
@@ -16,19 +17,23 @@ class AuthenticationController extends Controller
             $user = User::create([
                 'name'     => $request->name,
                 'email'    => $request->email,
+                'language' => $request->language,
                 'password' => Hash::make($request->password),
+
             ]);
 
             if (!$user) {
-                throw new \Exception('Error creating user');
+                throw new \Exception(__('Error creating user'));
             }
 
             $user->notify(new VerifyEmailNotification($user));
 
             Log::channel('register')->info('New user registered.', ['email' => $request->email]);
 
+            App::setLocale($request->language);
+
             return response()->json([
-                'message' => 'User registered successfully.  Verification email sent to ' . $user->email,
+                'message' => __('User registered successfully.  Verification email sent to ') . $user->email,
                 'user'    => $user,
             ], 201);
 
@@ -36,7 +41,7 @@ class AuthenticationController extends Controller
             Log::channel('register')->error('Failed to register user.', ['error' => $th->getMessage()]);
 
             return response()->json([
-                'error' => 'Failed to register user',
+                'error' => __('Failed to register user'),
             ], 500);
         }
     }

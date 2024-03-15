@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CustomerFormRequest;
 use App\Http\Resources\CustomerResource;
 use App\Models\Customer;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
@@ -35,11 +35,12 @@ class CustomerController extends Controller
 
             return response()->json([
                 'success' => true,
-                'data' => new CustomerResource($customer),
-                'message' => __('Customer created successfully')
+                'data'    => new CustomerResource($customer),
+                'message' => __('Customer created successfully'),
             ], 201);
         } catch (\Exception $e) {
             DB::rollBack();
+
             return response()->json(['message' => 'Failed to store customer'], 500);
         }
     }
@@ -57,11 +58,12 @@ class CustomerController extends Controller
 
             return response()->json([
                 'success' => true,
-                'data' => new CustomerResource($customer),
-                'message' => __('Customer updated successfully')
+                'data'    => new CustomerResource($customer),
+                'message' => __('Customer updated successfully'),
             ]);
         } catch (\Exception $e) {
             DB::rollBack();
+
             return response()->json(['message' => 'Failed to update customer'], 500);
         }
     }
@@ -77,10 +79,11 @@ class CustomerController extends Controller
 
             return response()->json([
                 'success' => true,
-                'message' => __('Customer deleted successfully')
+                'message' => __('Customer deleted successfully'),
             ]);
         } catch (\Exception $e) {
             DB::rollBack();
+
             return response()->json(['message' => 'Failed to delete customer'], 500);
         }
     }
