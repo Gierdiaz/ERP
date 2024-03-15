@@ -18,6 +18,7 @@ class CustomerFormRequest extends FormRequest
             'email'   => ['required', 'email', 'unique:customers,email', 'max:255'],
             'phone'   => ['required', 'string', 'max:20'],
             'address' => ['required', 'string', 'max:255'],
+            'user_id' => ['required', 'exists:users,id'],
         ];
 
         if ($this->isMethod('PATCH') || $this->isMethod('PUT')) {

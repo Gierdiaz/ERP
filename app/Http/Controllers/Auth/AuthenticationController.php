@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\{LoginFormRequest, RegisterFormRequest};
 use App\Models\User;
 use App\Notifications\Auth\VerifyEmailNotification;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\{Auth, Hash, Log};
 
 class AuthenticationController extends Controller
