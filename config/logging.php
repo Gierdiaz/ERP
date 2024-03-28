@@ -133,7 +133,7 @@ return [
 
         'login' => [
             'driver' => 'single',
-            'path'   => storage_path('logs/Register/login.log'),
+            'path'   => storage_path('logs/Login/login.log'),
             'level'  => 'info',
         ],
 
@@ -147,6 +147,12 @@ return [
             'driver' => 'single',
             'path'   => storage_path('logs/Resend/verification_resend.log'),
             'level'  => 'debug',
+        ],
+
+        'customer' => [
+            'driver' => 'single',
+            'path'   => storage_path('logs/Customer/custom.log'),
+            'level'  => 'info',
         ],
 
     ],
