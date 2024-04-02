@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DTO\CustomerDTO;
 use App\Http\Requests\CustomerFormRequest;
 use App\Http\Resources\CustomerResource;
 use App\Repositories\CustomerRepository;
@@ -35,8 +36,15 @@ class CustomerController extends Controller
     {
         try {
             $validated = $request->validated();
+            $customerDTO = new CustomerDTO(
+                $validated['name'],
+                $validated['email'],
+                $validated['phone'],
+                $validated['address'],
+                $validated['user_id']
+            );
 
-            $customer = $this->customerRepository->create($validated);
+            $customer = $this->customerRepository->create($customerDTO);
 
             Log::channel('customer')->info('Customer created successfully', ['customer_id' => $customer->id]);
 

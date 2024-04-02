@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\DTO\CustomerDTO;
 use App\Models\Customer;
 
 class CustomerRepository
@@ -23,14 +24,14 @@ class CustomerRepository
         return $this->model->findOrFail($id);
     }
 
-    public function create(array $data)
+    public function create(CustomerDTO $customerDTO)
     {
-        return $this->model->create($data);
+        return $this->model->create((array)$customerDTO);
     }
 
-    public function update(Customer $customer, array $data)
+    public function update(Customer $customer, CustomerDTO $customerDTO)
     {
-        $customer->update($data);
+        $customer->update((array)$customerDTO);
 
         return $customer;
     }
