@@ -31,7 +31,13 @@ class CustomerRepository
 
     public function update(Customer $customer, CustomerDTO $customerDTO)
     {
-        $customer->update((array)$customerDTO);
+        $customer->update([
+            'name' => $customerDTO->name,
+            'email' => $customerDTO->email,
+            'phone' => $customerDTO->phone,
+            'address' => $customerDTO->address,
+            'user_id' => $customerDTO->user_id,
+        ]);
 
         return $customer;
     }

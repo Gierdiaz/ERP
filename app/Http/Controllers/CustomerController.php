@@ -65,9 +65,16 @@ class CustomerController extends Controller
     {
         try {
             $validated = $request->validated();
+            $customerDTO = new CustomerDTO(
+                $validated['name'],
+                $validated['email'],
+                $validated['phone'],
+                $validated['address'],
+                $validated['user_id']
+            );
 
             $customer = $this->customerRepository->getById($id);
-            $customer = $this->customerRepository->update($customer, $validated);
+            $customer = $this->customerRepository->update($customer, $customerDTO);
 
             Log::channel('customer')->info('Customer updated successfully', ['customer_id' => $customer->id]);
 
@@ -103,4 +110,5 @@ class CustomerController extends Controller
             return response()->json(['message' => 'Failed to delete customer'], 500);
         }
     }
+
 }
