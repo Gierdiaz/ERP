@@ -27,11 +27,11 @@ it('shows a specific customer', function () {
         ->assertStatus(200)
         ->assertJson([
             'data' => [
-                'identify' => $customer->id,
-                'name'     => $customer->name,
-                'email'    => $customer->email,
-                'phone'    => $customer->phone,
-                'address'  => $customer->address,
+                'id'      => $customer->id,
+                'name'    => $customer->name,
+                'email'   => $customer->email,
+                'phone'   => $customer->phone,
+                'address' => $customer->address,
             ],
         ]);
 });
