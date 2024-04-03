@@ -7,8 +7,10 @@ use App\DTO\CustomerDTO;
 use App\Http\Requests\CustomerFormRequest;
 use App\Http\Resources\CustomerResource;
 use App\Interfaces\CustomerInterface;
+use App\Models\Customer;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\{DB, Log};
+use Illuminate\Support\Facades\Gate;
 
 class CustomerController extends Controller
 {
@@ -22,6 +24,8 @@ class CustomerController extends Controller
     public function index()
     {
         try {
+            // Gate::authorize('viewAny', Customer::class);
+
             $customers = $this->customerRepository->getAll();
 
             return ApiResponse::sendResponse(CustomerResource::collection($customers), '', 200);
