@@ -3,9 +3,10 @@
 namespace App\Repositories;
 
 use App\DTO\CustomerDTO;
+use App\Interfaces\CustomerInterface;
 use App\Models\Customer;
 
-class CustomerRepository
+class CustomerRepository implements CustomerInterface
 {
     protected $model;
 
@@ -32,9 +33,9 @@ class CustomerRepository
     public function update(Customer $customer, CustomerDTO $customerDTO)
     {
         $customer->update([
-            'name' => $customerDTO->name,
-            'email' => $customerDTO->email,
-            'phone' => $customerDTO->phone,
+            'name'    => $customerDTO->name,
+            'email'   => $customerDTO->email,
+            'phone'   => $customerDTO->phone,
             'address' => $customerDTO->address,
             'user_id' => $customerDTO->user_id,
         ]);
