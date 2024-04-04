@@ -24,6 +24,8 @@ class CustomerController extends Controller
     public function index()
     {
         try {
+            Gate::authorize('view', Customer::class);
+
             $customers = $this->customerRepository->getAll();
 
             return ApiResponse::sendResponse(CustomerResource::collection($customers), '', 200);
@@ -35,7 +37,7 @@ class CustomerController extends Controller
     public function show($id)
     {
         try {
-            Gate::authorize('viewAny', Customer::class);
+            Gate::authorize('view', Customer::find($id));
 
             $customer = $this->customerRepository->getById($id);
 
@@ -51,6 +53,8 @@ class CustomerController extends Controller
         DB::beginTransaction();
 
         try {
+            Gate::authorize('create', Customer::class);
+
             $validated   = $request->validated();
             $customerDTO = new CustomerDTO(
                 $validated['name'],
@@ -79,6 +83,8 @@ class CustomerController extends Controller
         DB::beginTransaction();
 
         try {
+            Gate::authorize('update', Customer::class);
+
             $validated   = $request->validated();
             $customerDTO = new CustomerDTO(
                 $validated['name'],
@@ -108,6 +114,8 @@ class CustomerController extends Controller
         DB::beginTransaction();
 
         try {
+            Gate::authorize('delete', Customer::class);
+            
             $customer = $this->customerRepository->getById($id);
             $this->customerRepository->delete($customer);
 
