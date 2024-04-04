@@ -15,7 +15,6 @@ class UserTableSeeder extends Seeder
      */
     public function run(): void
     {
-        // Criar permissões
         Permission::create(['name' => 'view customers']);
         Permission::create(['name' => 'create customers']);
         Permission::create(['name' => 'update customers']);
@@ -24,7 +23,7 @@ class UserTableSeeder extends Seeder
         // Criar papéis e atribuir permissões
         $adminRole = Role::create(['name' => 'admin']);
         $adminRole->givePermissionTo(['view customers', 'create customers', 'update customers', 'delete customers']);
-        //dd($);
+   
         $regularRole = Role::create(['name' => 'regular']);
         $regularRole->givePermissionTo('view customers', 'create customers');
 
