@@ -10,7 +10,8 @@ class CustomerPolicy
 {
     public function viewAny(User $user): bool
     {
-        return $user->type === 'admin';
+        return $user->hasRole('admin');
+        //return $user->type === 'admin';
     }
 
     public function view(User $user, Customer $customer)
@@ -23,7 +24,7 @@ class CustomerPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->hasPermissionTo('create customers');
     }
 
     /**
@@ -31,7 +32,7 @@ class CustomerPolicy
      */
     public function update(User $user, Customer $customer): bool
     {
-        //
+        return $user->id === $customer->user_id;
     }
 
     /**
@@ -39,7 +40,7 @@ class CustomerPolicy
      */
     public function delete(User $user, Customer $customer): bool
     {
-        //
+        return $user->id === $customer->user_id;
     }
 
     /**
@@ -47,7 +48,8 @@ class CustomerPolicy
      */
     public function restore(User $user, Customer $customer): bool
     {
-        //
+        // Only admins can restore customers
+        return $user->hasRole('admin');
     }
 
     /**
@@ -55,6 +57,7 @@ class CustomerPolicy
      */
     public function forceDelete(User $user, Customer $customer): bool
     {
-        //
+        // Only admins can permanently delete customers
+        return $user->hasRole('admin');
     }
 }

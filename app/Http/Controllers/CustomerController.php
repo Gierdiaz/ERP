@@ -42,6 +42,7 @@ class CustomerController extends Controller
             return CustomerResource::make($customer);
         } catch (\Exception $e) {
             return ApiResponse::throw($e);
+
         }
     }
 
