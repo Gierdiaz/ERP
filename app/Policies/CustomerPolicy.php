@@ -10,7 +10,7 @@ class CustomerPolicy
 {
     public function viewAny(User $user): bool
     {
-    
+        return $user->type === 'admin';
     }
 
     public function view(User $user, Customer $customer)

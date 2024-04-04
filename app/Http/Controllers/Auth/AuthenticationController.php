@@ -19,6 +19,7 @@ class AuthenticationController extends Controller
                 'email'    => $request->email,
                 'language' => $request->language,
                 'password' => Hash::make($request->password),
+                'type'     => 'admin',
 
             ]);
 

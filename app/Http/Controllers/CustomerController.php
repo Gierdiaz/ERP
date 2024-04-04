@@ -24,8 +24,6 @@ class CustomerController extends Controller
     public function index()
     {
         try {
-            // Gate::authorize('viewAny', Customer::class);
-
             $customers = $this->customerRepository->getAll();
 
             return ApiResponse::sendResponse(CustomerResource::collection($customers), '', 200);
@@ -37,6 +35,8 @@ class CustomerController extends Controller
     public function show($id)
     {
         try {
+            Gate::authorize('viewAny', Customer::class);
+
             $customer = $this->customerRepository->getById($id);
 
             return CustomerResource::make($customer);
