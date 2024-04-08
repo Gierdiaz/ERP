@@ -17,7 +17,7 @@ Route::middleware('auth:sanctum')->group(function () {
     // PRODUCTS ROUTES 
     Route::get('/products', [ ProductController::class, 'index' ])->name('products.index');
     Route::post('/products', [ ProductController::class, 'store' ])->name('products.store');
-
+    Route::delete('/products/{product}', [ ProductController::class, 'destroy'])->name('products.destroy');
 });
 
 // Routes for email verification and email verification resend

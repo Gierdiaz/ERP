@@ -9,6 +9,7 @@ use App\Http\Resources\ProductResource;
 use App\Interfaces\ProductInterface;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
@@ -36,17 +37,6 @@ class ProductController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(ProductFormRequest $request)
     {
         try {
@@ -73,17 +63,11 @@ class ProductController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Product $product)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Product $product)
     {
         //
@@ -97,11 +81,24 @@ class ProductController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $product = $this->productRepository->getById($id);
+            $this->productRepository->delete($product);
+            
+            DB::commit();
+            Log::channel('product')->info('Product deleted successfully', ['id' => $id]);
+
+            return ApiResponse::sendResponse([] , __('Product deleted successfully'));
+        }
+        catch(\Exception $e) {
+            DB::rollBack();
+            return ApiResponse::rollback($e, 
+             __('Failed to delete Product: '. $e->getMessage())
+            );
+        }
     }
 }
