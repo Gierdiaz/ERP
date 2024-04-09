@@ -8,7 +8,6 @@ use App\Http\Requests\ProductFormRequest;
 use App\Http\Resources\ProductResource;
 use App\Interfaces\ProductInterface;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
@@ -76,9 +75,35 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(ProductFormRequest $request, $id)
     {
-        //
+        DB::beginTransaction();
+
+        try {
+            $validated = $request->validated();
+            $productDTO = new ProductDTO(
+                $validated['name'],
+                $validated['description'],
+                $validated['price'],
+                $validated['amount_available']
+            );
+
+            $product = $this->productRepository->getById($id);
+            $product = $this->productRepository->update($product, $productDTO);
+
+            DB::commit();
+
+            Log::channel('product')->info('Product updated successfully', ['id' => $product->id]);
+
+            return ApiResponse::sendResponse(
+                new ProductResource($product),
+                __('Product updated successfully')
+            );
+        }
+        catch(\Exception $e) {
+            DB::rollBack();
+            return ApiResponse::throw($e, $e->getMessage());
+        }
     }
 
     public function destroy($id)
