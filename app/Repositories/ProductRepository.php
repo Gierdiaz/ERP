@@ -19,7 +19,8 @@ class ProductRepository implements ProductInterface
     return $this->model->orderBy('created_at', 'desc')->paginate();
   }
 
-  public function getById($id) {
+  public function getById($id) 
+  {
     return $this->model->findOrFail($id);
   }
 
@@ -28,8 +29,21 @@ class ProductRepository implements ProductInterface
     return $this->model->create((array)$productDTO);
   }
 
+  public function update(Product $product, ProductDTO $productDTO)
+  {
+      $product->update([
+        'name' => $productDTO->name,
+        'description' => $productDTO->description,
+        'amount_available' => $productDTO->amount_available,
+        'price' => $productDTO->price,
+      ]);
+
+      return $product;
+  }
+
   public function delete(Product $product)
   {
     return $product->delete();
   }
+
 }

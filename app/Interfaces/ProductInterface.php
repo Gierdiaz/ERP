@@ -13,5 +13,7 @@ interface ProductInterface
 
   public function create(ProductDTO $productDTO);
 
+  public function update(Product $product, ProductDTO $productDTO); 
+  
   public function delete(Product $product);
 }
