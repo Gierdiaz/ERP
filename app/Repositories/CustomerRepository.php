@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\DTO\CustomerDTO;
 use App\Interfaces\CustomerInterface;
 use App\Models\Customer;
 
@@ -17,7 +16,7 @@ class CustomerRepository implements CustomerInterface
 
     public function getAll()
     {
-        return $this->model->orderBy('created_at', 'desc')->paginate();
+        return $this->model->orderBy('created_at', 'desc')->paginate(2);
     }
 
     public function getById($id)
@@ -25,20 +24,14 @@ class CustomerRepository implements CustomerInterface
         return $this->model->findOrFail($id);
     }
 
-    public function create(CustomerDTO $customerDTO)
+    public function create(array $data)
     {
-        return $this->model->create((array)$customerDTO);
+        return $this->model->create($data);
     }
 
-    public function update(Customer $customer, CustomerDTO $customerDTO)
+    public function update(Customer $customer, array $data)
     {
-        $customer->update([
-            'name'    => $customerDTO->name,
-            'email'   => $customerDTO->email,
-            'phone'   => $customerDTO->phone,
-            'address' => $customerDTO->address,
-            'user_id' => $customerDTO->user_id,
-        ]);
+        $customer->update($data);
 
         return $customer;
     }

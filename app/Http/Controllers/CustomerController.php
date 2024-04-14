@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Classes\ApiResponse;
-use App\DTO\CustomerDTO;
 use App\Http\Requests\CustomerFormRequest;
 use App\Http\Resources\CustomerResource;
 use App\Interfaces\CustomerInterface;
-use App\Models\Customer;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\{DB, Log};
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 
 class CustomerController extends Controller
 {
@@ -35,7 +34,6 @@ class CustomerController extends Controller
     public function show($id)
     {
         try {
-            Gate::authorize('viewAny', Customer::class);
 
             $customer = $this->customerRepository->getById($id);
 
@@ -48,55 +46,43 @@ class CustomerController extends Controller
     public function store(CustomerFormRequest $request): JsonResponse
     {
         DB::beginTransaction();
-
+    
         try {
-            $validated   = $request->validated();
-            $customerDTO = new CustomerDTO(
-                $validated['name'],
-                $validated['email'],
-                $validated['phone'],
-                $validated['address'],
-                $validated['user_id']
-            );
-
-            $customer = $this->customerRepository->create($customerDTO);
-
+            $validated = $request->validated();
+    
+            $customer = $this->customerRepository->create($validated);
+    
             DB::commit();
-
+    
             Log::channel('customer')->info('Customer created successfully', ['customer_id' => $customer->id]);
-
+    
             return ApiResponse::sendResponse(new CustomerResource($customer), __('Customer created successfully'), 201);
         } catch (\Exception $e) {
             DB::rollBack();
-
+    
             return ApiResponse::rollback($e, __('Failed to store customer'));
         }
     }
-
+    
     public function update(CustomerFormRequest $request, $id): JsonResponse
     {
         DB::beginTransaction();
-
+    
         try {
-            $validated   = $request->validated();
-            $customerDTO = new CustomerDTO(
-                $validated['name'],
-                $validated['email'],
-                $validated['phone'],
-                $validated['address'],
-                $validated['user_id']
-            );
+            $validated = $request->validated();
 
             $customer = $this->customerRepository->getById($id);
-            $customer = $this->customerRepository->update($customer, $customerDTO);
-
+            $customer->update($validated);    
+    
             DB::commit();
-
+    
             Log::channel('customer')->info('Customer updated successfully', ['customer_id' => $customer->id]);
-
+    
             return ApiResponse::sendResponse(new CustomerResource($customer), __('Customer updated successfully'));
         } catch (\Exception $e) {
             DB::rollBack();
+    
+            Log::channel('customer')->info('Failed to update customer: ' . $e->getMessage());
 
             return ApiResponse::rollback($e, __('Failed to update customer'));
         }

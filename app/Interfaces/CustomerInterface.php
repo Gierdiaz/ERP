@@ -2,7 +2,6 @@
 
 namespace App\Interfaces;
 
-use App\DTO\CustomerDTO;
 use App\Models\Customer;
 
 interface CustomerInterface
@@ -11,9 +10,9 @@ interface CustomerInterface
 
     public function getById($id);
 
-    public function create(CustomerDTO $customerDTO);
+    public function create(array $data);
 
-    public function update(Customer $customer, CustomerDTO $customerDTO);
+    public function update(Customer $customer, array $data);
 
     public function delete(Customer $customer);
 }
