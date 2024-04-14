@@ -3,10 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\{Permission, Role};
 
 class UserTableSeeder extends Seeder
 {
@@ -24,21 +22,21 @@ class UserTableSeeder extends Seeder
         // Criar papéis e atribuir permissões
         $adminRole = Role::create(['name' => 'admin']);
         $adminRole->givePermissionTo(['view customers', 'create customers', 'update customers', 'delete customers', 'manage customers']);
-   
+
         $regularRole = Role::create(['name' => 'regular']);
         $regularRole->givePermissionTo('view customers', 'create customers');
 
         // Criar usuários e atribuir papéis
         $adminUser = User::create([
-            'name' => 'Admin User',
-            'email' => 'admin@example.com',
+            'name'     => 'Admin User',
+            'email'    => 'admin@example.com',
             'password' => bcrypt('password'),
         ]);
         $adminUser->assignRole($adminRole);
 
         $regularUser = User::create([
-            'name' => 'Regular User',
-            'email' => 'user@example.com',
+            'name'     => 'Regular User',
+            'email'    => 'user@example.com',
             'password' => bcrypt('password'),
         ]);
         $regularUser->assignRole($regularRole);

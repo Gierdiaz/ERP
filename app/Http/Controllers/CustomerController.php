@@ -7,8 +7,7 @@ use App\Http\Requests\CustomerFormRequest;
 use App\Http\Resources\CustomerResource;
 use App\Interfaces\CustomerInterface;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\{DB, Log};
 
 class CustomerController extends Controller
 {
@@ -46,44 +45,46 @@ class CustomerController extends Controller
     public function store(CustomerFormRequest $request): JsonResponse
     {
         DB::beginTransaction();
-    
+
         try {
 
             $validated = $request->validated();
-    
+
             $customer = $this->customerRepository->create($validated);
-    
+
             DB::commit();
-    
+
             Log::channel('customer')->info('Customer created successfully', ['customer_id' => $customer->id]);
-    
+
             return ApiResponse::sendResponse(new CustomerResource($customer), __('Customer created successfully'), 201);
         } catch (\Exception $e) {
             DB::rollBack();
-    
+
+            Log::channel('customer')->info('Failed to store customer: ' . $e->getMessage());
+
             return ApiResponse::rollback($e, __('Failed to store customer'));
         }
     }
-    
+
     public function update(CustomerFormRequest $request, $id): JsonResponse
     {
         DB::beginTransaction();
-    
+
         try {
 
             $validated = $request->validated();
 
             $customer = $this->customerRepository->getById($id);
-            $customer->update($validated);    
-    
+            $customer->update($validated);
+
             DB::commit();
-    
+
             Log::channel('customer')->info('Customer updated successfully', ['customer_id' => $customer->id]);
-    
+
             return ApiResponse::sendResponse(new CustomerResource($customer), __('Customer updated successfully'));
         } catch (\Exception $e) {
             DB::rollBack();
-    
+
             Log::channel('customer')->info('Failed to update customer: ' . $e->getMessage());
 
             return ApiResponse::rollback($e, __('Failed to update customer'));
@@ -95,7 +96,7 @@ class CustomerController extends Controller
         DB::beginTransaction();
 
         try {
-            
+
             $customer = $this->customerRepository->getById($id);
             $this->customerRepository->delete($customer);
 

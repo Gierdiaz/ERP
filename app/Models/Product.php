@@ -13,6 +13,6 @@ class Product extends Model
         'name',
         'description',
         'price',
-        'amount_available'
+        'amount_available',
     ];
 }

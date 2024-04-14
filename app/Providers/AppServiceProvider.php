@@ -3,14 +3,11 @@
 namespace App\Providers;
 
 use App\Http\Middleware\SetLocale;
-use App\Interfaces\CustomerInterface;
-use App\Interfaces\ProductInterface;
+use App\Interfaces\{CustomerInterface, ProductInterface};
 use App\Models\Customer;
 use App\Policies\CustomerPolicy;
-use App\Repositories\CustomerRepository;
-use App\Repositories\ProductRepository;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Support\Facades\Route;
+use App\Repositories\{CustomerRepository, ProductRepository};
+use Illuminate\Support\Facades\{Gate, Route};
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -33,7 +30,5 @@ class AppServiceProvider extends ServiceProvider
         Route::pushMiddlewareToGroup('api', SetLocale::class);
         Gate::policy(Customer::class, CustomerPolicy::class);
     }
-
-    
 
 }

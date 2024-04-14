@@ -8,8 +8,7 @@ use App\Http\Requests\ProductFormRequest;
 use App\Http\Resources\ProductResource;
 use App\Interfaces\ProductInterface;
 use App\Models\Product;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\{DB, Log};
 
 class ProductController extends Controller
 {
@@ -19,19 +18,18 @@ class ProductController extends Controller
     {
         $this->productRepository = $productRepository;
     }
-    
 
     public function index()
     {
         try {
             $products = $this->productRepository->getAll();
+
             return ApiResponse::sendResponse(
                 ProductResource::collection($products),
                 '',
                 200
             );
-        }
-        catch(\Exception $e) {
+        } catch(\Exception $e) {
             return ApiResponse::throw($e);
         }
     }
@@ -39,7 +37,7 @@ class ProductController extends Controller
     public function store(ProductFormRequest $request)
     {
         try {
-            $validated = $request->validated();
+            $validated  = $request->validated();
             $productDTO = new ProductDTO(
                 $validated['name'],
                 $validated['description'],
@@ -56,8 +54,7 @@ class ProductController extends Controller
                 'Product created successfully',
                 201
             );
-        }
-        catch(\Exception $e) {
+        } catch(\Exception $e) {
             return ApiResponse::throw($e, $e->getMessage());
         }
     }
@@ -80,7 +77,7 @@ class ProductController extends Controller
         DB::beginTransaction();
 
         try {
-            $validated = $request->validated();
+            $validated  = $request->validated();
             $productDTO = new ProductDTO(
                 $validated['name'],
                 $validated['description'],
@@ -99,9 +96,9 @@ class ProductController extends Controller
                 new ProductResource($product),
                 __('Product updated successfully')
             );
-        }
-        catch(\Exception $e) {
+        } catch(\Exception $e) {
             DB::rollBack();
+
             return ApiResponse::throw($e, $e->getMessage());
         }
     }
@@ -113,16 +110,17 @@ class ProductController extends Controller
         try {
             $product = $this->productRepository->getById($id);
             $this->productRepository->delete($product);
-            
+
             DB::commit();
             Log::channel('product')->info('Product deleted successfully', ['id' => $id]);
 
-            return ApiResponse::sendResponse([] , __('Product deleted successfully'));
-        }
-        catch(\Exception $e) {
+            return ApiResponse::sendResponse([], __('Product deleted successfully'));
+        } catch(\Exception $e) {
             DB::rollBack();
-            return ApiResponse::rollback($e, 
-             __('Failed to delete Product: '. $e->getMessage())
+
+            return ApiResponse::rollback(
+                $e,
+                __('Failed to delete Product: ' . $e->getMessage())
             );
         }
     }
