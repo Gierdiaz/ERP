@@ -4,9 +4,11 @@ namespace App\Providers;
 
 use App\Http\Middleware\SetLocale;
 use App\Interfaces\CustomerInterface;
+use App\Interfaces\ProductInterface;
 use App\Models\Customer;
 use App\Policies\CustomerPolicy;
 use App\Repositories\CustomerRepository;
+use App\Repositories\ProductRepository;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -20,6 +22,7 @@ class AppServiceProvider extends ServiceProvider
     {
         //TODO: Register the CustomerRepository and bind it to the CustomerInterface interface
         $this->app->bind(CustomerInterface::class, CustomerRepository::class);
+        $this->app->bind(ProductInterface::class, ProductRepository::class);
     }
 
     /**
@@ -30,5 +33,7 @@ class AppServiceProvider extends ServiceProvider
         Route::pushMiddlewareToGroup('api', SetLocale::class);
         Gate::policy(Customer::class, CustomerPolicy::class);
     }
+
+    
 
 }

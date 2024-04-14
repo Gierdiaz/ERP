@@ -8,7 +8,6 @@ use App\Http\Resources\CustomerResource;
 use App\Interfaces\CustomerInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
 
 class CustomerController extends Controller
@@ -23,6 +22,7 @@ class CustomerController extends Controller
     public function index()
     {
         try {
+
             $customers = $this->customerRepository->getAll();
 
             return ApiResponse::sendResponse(CustomerResource::collection($customers), '', 200);
@@ -34,12 +34,12 @@ class CustomerController extends Controller
     public function show($id)
     {
         try {
-
             $customer = $this->customerRepository->getById($id);
 
             return CustomerResource::make($customer);
         } catch (\Exception $e) {
             return ApiResponse::throw($e);
+
         }
     }
 
@@ -48,6 +48,7 @@ class CustomerController extends Controller
         DB::beginTransaction();
     
         try {
+
             $validated = $request->validated();
     
             $customer = $this->customerRepository->create($validated);
@@ -69,6 +70,7 @@ class CustomerController extends Controller
         DB::beginTransaction();
     
         try {
+
             $validated = $request->validated();
 
             $customer = $this->customerRepository->getById($id);
@@ -93,6 +95,7 @@ class CustomerController extends Controller
         DB::beginTransaction();
 
         try {
+            
             $customer = $this->customerRepository->getById($id);
             $this->customerRepository->delete($customer);
 
