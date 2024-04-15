@@ -1,8 +1,9 @@
 <?php
 
+use App\Classes\ApiResponse;
 use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\Email\VerificationController;
-use App\Http\Controllers\{CustomerController, ProductController};
+use App\Http\Controllers\{CustomerController, EmployeeController, ProductController};
 use Illuminate\Support\Facades\Route;
 
 // Routes accessible only for authenticated users
@@ -32,3 +33,5 @@ Route::middleware('guest')->group(function () {
     Route::post('register', [AuthenticationController::class, 'register'])->name('register');
     Route::post('login', [AuthenticationController::class, 'login'])->name('login');
 });
+
+Route::apiResource('employees', EmployeeController::class);
