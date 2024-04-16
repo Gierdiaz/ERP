@@ -7,6 +7,7 @@ use App\Http\Requests\CustomerFormRequest;
 use App\Http\Resources\CustomerResource;
 use App\Interfaces\CustomerInterface;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\{DB, Log};
 
 class CustomerController extends Controller
@@ -18,7 +19,7 @@ class CustomerController extends Controller
         $this->customerRepository = $customerRepository;
     }
 
-    public function index()
+    public function index(): JsonResponse
     {
         try {
 
