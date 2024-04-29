@@ -12,19 +12,19 @@ class ProfileController extends Controller
     {
         try {
             $request->validated();
-    
+
             $file = $request->file('file');
-    
+
             $path = $file->store('files');
 
             $url = URL::signedRoute('file.download', ['file' => basename($path)]);
-    
-            Log::channel('file')->info('Arquivo armazenado em: ' . $path);
-    
-            return response()->json(['success' => 'Arquivo enviado com sucesso', 'download_url' => $url], 200);
+
+            Log::channel('file')->info('File stored in: ' . $path);
+
+            return response()->json(['success' => 'File uploaded successfully', 'download_url' => $url], 200);
         } catch(Exception $exception) {
-            Log::channel('error')->error('Erro durante o processamento do arquivo: ' . $exception->getMessage());
-            return response()->json(['error' => 'Erro durante o processamento do arquivo. Por favor, tente novamente mais tarde.'], 500);
+            Log::channel('error')->error('Error processing file: ' . $exception->getMessage());
+            return response()->json(['error' => 'Error processing file. Please try again later.'], 500);
         }
     }
 
@@ -34,7 +34,7 @@ class ProfileController extends Controller
             return Storage::download('files/' .$file);
         }
 
-        return response()->json(['Eror' => 'Arquivo não encontrado'], 404);
+        return response()->json(['Error' => 'File not found'], 404);
     }
-    
+
 }
