@@ -155,6 +155,18 @@ return [
             'level'  => 'info',
         ],
 
+        'file' => [
+            'driver' => 'single',
+            'path'   => storage_path('logs/File/file.log'),
+            'level'  => 'info',
+        ],
+
+        'error' => [
+            'driver' => 'single',
+            'path'   => storage_path('logs/Error/error.log'),
+            'level'  => 'info',
+        ],
+
     ],
 
 ];

@@ -2,13 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Employee\EmployeeStoreFormRequest;
-use App\Http\Requests\Employee\EmployeeUpdateFormRequest;
+use App\Http\Requests\Employee\{EmployeeStoreFormRequest, EmployeeUpdateFormRequest};
 use App\Http\Resources\EmployeeResource;
 use App\Interfaces\EmployeeInterface;
-use App\Models\Employee;
-use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 
 class EmployeeController extends Controller
 {
@@ -18,7 +14,7 @@ class EmployeeController extends Controller
     {
         $this->employeeRepository = $employeeRepository;
     }
-    
+
     public function index()
     {
         $employee = $this->employeeRepository->getAllEmployees();
@@ -64,6 +60,6 @@ class EmployeeController extends Controller
 
         $this->employeeRepository->deleteEmployees($employee);
 
-        return response()->json(['message' => 'Employee delete successfully','data' => $employee], 200);
+        return response()->json(['message' => 'Employee delete successfully', 'data' => $employee], 200);
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Interfaces;
 
 use App\Models\Employee;
-use Illuminate\Support\Collection;
 
 interface EmployeeInterface
 {

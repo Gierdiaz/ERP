@@ -1,9 +1,8 @@
 <?php
 
-use App\Classes\ApiResponse;
 use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\Email\VerificationController;
-use App\Http\Controllers\{CustomerController, EmployeeController, ProductController};
+use App\Http\Controllers\{CustomerController, EmployeeController, ProductController, ProfileController};
 use Illuminate\Support\Facades\Route;
 
 // Routes accessible only for authenticated users
@@ -35,3 +34,7 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::apiResource('employees', EmployeeController::class);
+
+Route::post('/file', [ProfileController::class, 'file']);
+Route::get('/download/{file}',  [ProfileController::class, 'download'])->name('file.download');
+

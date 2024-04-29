@@ -7,16 +7,15 @@ use Illuminate\Support\Facades\Schema;
 return new class () extends Migration {
     public function up(): void
     {
-        Schema::create('employees', function (Blueprint $table) {
-            $table->uuid('id')->primary()->unique();
-            $table->string('name');
+        Schema::create('profiles', function (Blueprint $table) {
+            $table->id();
+            $table->string('file')->nullable();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
     public function down(): void
     {
-        Schema::dropIfExists('employees');
+        Schema::dropIfExists('profiles');
     }
 };
