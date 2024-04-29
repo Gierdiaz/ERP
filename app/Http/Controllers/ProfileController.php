@@ -17,7 +17,7 @@ class ProfileController extends Controller
 
             $path = $file->store('files');
 
-            $url = URL::signedRoute('file.download', ['file' => basename($path)]);
+            $url = URL::temporarySignedRoute('file.download', now()->addMinutes(30), ['file' => basename($path)]);
 
             Log::channel('file')->info('File stored in: ' . $path);
 
