@@ -3,14 +3,11 @@
 use App\Mail\MeetingInvitation;
 use App\Models\User;
 use Illuminate\Foundation\Inspiring;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Schedule;
+use Illuminate\Support\Facades\{Artisan, Mail, Schedule};
 
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote')->hourly();
-
 
 Schedule::call(function () {
     $users = User::all();

@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\Email\VerificationController;
-use App\Http\Controllers\{CustomerController, EmployeeController, ProfileController};
+use App\Http\Controllers\{CustomerController, DocumentController, EmployeeController, ProfileController};
 use Illuminate\Support\Facades\Route;
 
 // Routes accessible only for authenticated users
@@ -31,3 +31,5 @@ Route::apiResource('employees', EmployeeController::class);
 
 Route::post('/file', [ProfileController::class, 'file']);
 Route::get('/download/{file}', [ProfileController::class, 'download'])->name('file.download');
+
+Route::get('/gerar-pdf', [DocumentController::class, 'createPDF'])->name('download.pdf');
