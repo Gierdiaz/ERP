@@ -6,20 +6,19 @@ use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\{Log, Storage};
 
 class VerifyEmailNotification extends Notification
 {
     use Queueable;
 
     protected $user;
+
     protected $photo;
 
     public function __construct(User $user, $photo)
     {
-        $this->user = $user;
+        $this->user  = $user;
         $this->photo = $photo;
     }
 
@@ -31,26 +30,25 @@ class VerifyEmailNotification extends Notification
     public function toMail(object $notifiable): MailMessage
     {
         $verificationUrl = $this->verificationUrl($notifiable);
-    
+
         if (Storage::disk('public')->exists($this->photo)) {
-            $avatarContents = Storage::disk('public')->get($this->photo);
-            $avatarName = basename($this->photo);
-    
+            $avatarPath     = Storage::disk('public')->url($this->photo);
+            $avatarName     = basename($this->photo);
+            $avatarData     = Storage::disk('public')->get($this->photo);
+            $avatarMimeType = Storage::disk('public')->mimeType($this->photo);
+
             return (new MailMessage())
                 ->subject('Verify New User Email Address')
-                ->line('A new user has registered on your website and needs email verification.')
-                ->line('Name: ' . $this->user->name)
-                ->line('Email: ' . $this->user->email)
-                ->action('Verify Email Address', $verificationUrl)
-                ->line('If you did not create an account, no further action is required.')
-                ->attachData($avatarContents, $avatarName, [
-                    'mime' => Storage::disk('public')->mimeType($this->photo),
+                ->markdown('emails.auth.verify_email', [
+                    'user'            => $this->user,
+                    'avatarPath'      => $avatarPath,
+                    'verificationUrl' => $verificationUrl,
                 ]);
         } else {
             Log::channel('error')->error('Avatar file does not exist: ' . $this->photo);
         }
     }
-    
+
     protected function verificationUrl(object $notifiable): string
     {
         return url(route('verification.verify', [

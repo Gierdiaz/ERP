@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\Email\VerificationController;
-use App\Http\Controllers\{CustomerController, EmployeeController, ProductController, ProfileController};
+use App\Http\Controllers\{CustomerController, EmployeeController, ProfileController};
 use Illuminate\Support\Facades\Route;
 
 // Routes accessible only for authenticated users
@@ -12,12 +12,6 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/customers', [CustomerController::class, 'store'])->name('customers.store');
     Route::put('/customers/{customer}', [CustomerController::class, 'update'])->name('customers.update');
     Route::delete('/customers/{customer}', [CustomerController::class, 'destroy'])->name('customers.destroy');
-
-    // PRODUCTS ROUTES
-    Route::get('/products', [ProductController::class, 'index'])->name('products.index');
-    Route::post('/products', [ProductController::class, 'store'])->name('products.store');
-    Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
-    Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
 });
 
 // Routes for email verification and email verification resend

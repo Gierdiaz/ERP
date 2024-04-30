@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\{LoginFormRequest};
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Notifications\Auth\VerifyEmailNotification;
 use Faker\Factory as Faker;
@@ -31,11 +32,11 @@ class AuthenticationController extends Controller
             if ($request->hasFile('photo')) {
                 $photo = $request->file('photo')->store('user-photo', 'public');
             } else {
-                $faker = Faker::create();
+                $faker       = Faker::create();
                 $fakerAvatar = $faker->imageUrl(300, 300, 'people');
-                $photo = 'avatars/' . uniqid() . '.jpg';
+                $photo       = 'avatars/' . uniqid() . '.jpg';
                 Storage::disk('public')->put($photo, file_get_contents($fakerAvatar));
-                
+
                 if (!Storage::disk('public')->exists($photo)) {
                     throw new \Exception(__('Error saving avatar'));
                 }
@@ -62,7 +63,7 @@ class AuthenticationController extends Controller
 
             return response()->json([
                 'message' => __('User registered successfully.  Verification email sent to ') . $user->email,
-                'user'    => $user,
+                'user'    => new UserResource($user),
             ], 201);
 
         } catch (\Throwable $th) {

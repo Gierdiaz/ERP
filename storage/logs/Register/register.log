@@ -1,1 +1,7 @@
-[2024-04-30 12:12:34] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-04-30 12:48:58] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-04-30 13:01:43] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-04-30 13:29:52] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-04-30 13:41:00] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-04-30 14:00:26] local.ERROR: Failed to register user. {"error":"Expected response code \"354\" but got code \"550\", with message \"550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing\"."} 
+[2024-04-30 14:01:00] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-04-30 14:20:37] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
