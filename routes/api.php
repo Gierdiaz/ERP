@@ -36,5 +36,4 @@ Route::middleware('guest')->group(function () {
 Route::apiResource('employees', EmployeeController::class);
 
 Route::post('/file', [ProfileController::class, 'file']);
-Route::get('/download/{file}',  [ProfileController::class, 'download'])->name('file.download');
-
+Route::get('/download/{file}', [ProfileController::class, 'download'])->name('file.download');
