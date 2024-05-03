@@ -1,0 +1,2 @@
+[2024-04-14 20:57:43] local.INFO: Failed to update customer: No query results for model [App\Models\Customer] 9bceddcc-2ab8-40fe-9bce-f8f224568b2b  
+[2024-04-14 21:00:44] local.INFO: Customer updated successfully {"customer_id":"9bcedea2-3aaa-4b8a-84b1-d9ea37e2b213"} 

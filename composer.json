@@ -5,20 +5,16 @@
     "keywords": ["laravel", "framework"],
     "license": "MIT",
     "require": {
-        "php": "^8.2",
-        "dompdf/dompdf": "^2.0",
-        "elibyy/tcpdf-laravel": "^11.1",
+        "php": "^8.3",
         "laravel/framework": "^11.0",
-        "laravel/horizon": "^5.24",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
-        "opcodesio/log-viewer": "^3.5",
-        "setasign/fpdi": "^2.6",
-        "setasign/fpdi-tcpdf": "2.3",
-        "tecnickcom/tcpdf": "^6.7",
-        "zendframework/zendpdf": "^2.0"
+        "opcodesio/log-viewer": "^3.5"
     },
     "require-dev": {
+        "captainhook/captainhook": "^5.23",
+        "captainhook/captainhook-phar": "^5.23",
+        "captainhook/hook-installer": "^1.0",
         "fakerphp/faker": "^1.23",
         "larastan/larastan": "^2.9",
         "laravel/pint": "^1.14",
@@ -28,8 +24,7 @@
         "nunomaduro/collision": "^8.0",
         "pestphp/pest": "^2.34",
         "pestphp/pest-plugin-laravel": "^2.3",
-        "phpunit/phpunit": "^10.5",
-        "spatie/laravel-ignition": "^2.4"
+        "phpunit/phpunit": "^10.5"
     },
     "autoload": {
         "psr-4": {
@@ -74,7 +69,9 @@
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
-            "php-http/discovery": true
+            "php-http/discovery": true,
+            "captainhook/captainhook-phar": true,
+            "captainhook/hook-installer": true
         }
     },
     "minimum-stability": "stable",

@@ -12,13 +12,9 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-
-        Document::factory()->count(1)->create();
-
         $this->call([
+            UserTableSeeder::class,
             CustomerTableSeeder::class,
-            SeedersUserTableSeeder::class,
-            EmployeeTableSeeder::class,
         ]);
     }
 }

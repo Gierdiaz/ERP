@@ -23,11 +23,13 @@ class ProfileController extends Controller
         }
 
         if($request->hasFile('photo')) {
-            $path = $request->file('photo')->store('profile-photos', 'public');
+            $path     = $request->file('photo')->store('profile-photos', 'public');
+            $fileName = $request->file('photo')->getClientOriginalName();
         } else {
             $faker       = Factory::create();
             $fakerAvatar = $faker->imageUrl(300, 300, 'people');
-            $path        = 'avatars/' . uniqid() . '.jpg';
+            $fileName    = uniqid() . '.jpg';
+            $path        = 'avatars/' . $fileName;
             Storage::disk('public')->put($path, file_get_contents($fakerAvatar));
         }
 
