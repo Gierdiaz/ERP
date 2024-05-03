@@ -1,41 +1,50 @@
 {
     "commit-msg": {
-      "enabled": true,
-      "actions": [
-        {
-          "action": "\\CaptainHook\\App\\Hook\\Message\\Action\\Beams"
-        }
-      ]
-    },
-    "pre-commit": {
-      "enabled": true,
-      "actions": [
-        {
-          "action": "./vendor/bin/pint",
-          "options": [],
-          "conditions": [],
-          "error-message": "Error encountered during Pint verification. Please fix the errors and try again.",
-          "success-message": "Pint verification completed successfully. No errors found."
-        },
-        {
-          "action": "./vendor/bin/phpstan",
-          "options": [],
-          "conditions": [],
-          "error-message": "Error encountered during static analysis with PHPStan. Please fix the errors and try again.",
-          "success-message": "Static analysis with PHPStan completed successfully. No errors found."
-        },
-        {
-          "action": "./vendor/bin/pest",
-          "options": [],
-          "conditions": [],
-          "error-message": "Error encountered during test execution with Pest. Please fix the errors and try again.",
-          "success-message": "Tests with Pest completed successfully. No errors found."
-        }
-      ]
+        "enabled": true,
+        "actions": [
+            {
+                "action": "\\CaptainHook\\App\\Hook\\Message\\Action\\Beams",
+                "options": {
+                    "subjectLength": 50,
+                    "bodyLineLength": 72
+                }
+            }
+        ]
     },
     "pre-push": {
-      "enabled": false,
-      "actions": []
+        "enabled": false,
+        "actions": []
+    },
+    "pre-commit": {
+        "enabled": true,
+        "actions": [
+            {
+                "action": "phpunit"
+            }
+        ]
+    },
+    "prepare-commit-msg": {
+        "enabled": false,
+        "actions": []
+    },
+    "post-commit": {
+        "enabled": false,
+        "actions": []
+    },
+    "post-merge": {
+        "enabled": false,
+        "actions": []
+    },
+    "post-checkout": {
+        "enabled": false,
+        "actions": []
+    },
+    "post-rewrite": {
+        "enabled": false,
+        "actions": []
+    },
+    "post-change": {
+        "enabled": false,
+        "actions": []
     }
-  }
-  
+}

@@ -13,8 +13,6 @@
     },
     "require-dev": {
         "captainhook/captainhook": "^5.23",
-        "captainhook/captainhook-phar": "^5.23",
-        "captainhook/hook-installer": "^1.0",
         "fakerphp/faker": "^1.23",
         "larastan/larastan": "^2.9",
         "laravel/pint": "^1.14",
@@ -70,8 +68,8 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true,
             "php-http/discovery": true,
-            "captainhook/captainhook-phar": true,
-            "captainhook/hook-installer": true
+            "captainhook/captainhook-phar": false,
+            "captainhook/hook-installer": false
         }
     },
     "minimum-stability": "stable",
