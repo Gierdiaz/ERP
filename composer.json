@@ -13,6 +13,7 @@
     },
     "require-dev": {
         "captainhook/captainhook": "^5.23",
+        "captainhook/hook-installer": "^1.0",
         "fakerphp/faker": "^1.23",
         "larastan/larastan": "^2.9",
         "laravel/pint": "^1.14",
