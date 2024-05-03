@@ -23,7 +23,7 @@ it('lists customers', function () {
 it('shows a specific customer', function () {
     $customer = Customer::factory()->create();
 
-    getJson(route('customers.showw', $customer->id))
+    getJson(route('customers.show', $customer->id))
         ->assertStatus(200)
         ->assertJson([
             'data' => [

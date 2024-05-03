@@ -1,2 +1,8 @@
 [2024-04-14 20:57:43] local.INFO: Failed to update customer: No query results for model [App\Models\Customer] 9bceddcc-2ab8-40fe-9bce-f8f224568b2b  
 [2024-04-14 21:00:44] local.INFO: Customer updated successfully {"customer_id":"9bcedea2-3aaa-4b8a-84b1-d9ea37e2b213"} 
+[2024-05-03 15:50:43] testing.INFO: Customer created successfully {"customer_id":"9bf4ab10-7de4-4d1f-9de8-03fc3c66673f"} 
+[2024-05-03 15:50:43] testing.INFO: Customer updated successfully {"customer_id":"9bf4ab10-cb90-4f8a-949c-4be073e21f86"} 
+[2024-05-03 15:50:43] testing.INFO: Customer deleted successfully {"customer_id":"9bf4ab10-f4aa-4f2e-96c4-f6b20d9f5f0b"} 
+[2024-05-03 15:51:26] testing.INFO: Customer created successfully {"customer_id":"9bf4ab52-7757-40c6-a80a-489d7047714a"} 
+[2024-05-03 15:51:26] testing.INFO: Customer updated successfully {"customer_id":"9bf4ab52-9a18-47e3-ab87-ad24f3584a09"} 
+[2024-05-03 15:51:26] testing.INFO: Customer deleted successfully {"customer_id":"9bf4ab52-c1ef-434f-869c-a960c6f3f5ae"} 
