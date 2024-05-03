@@ -39,7 +39,7 @@ it('shows a specific customer', function () {
 it('store a new customer', function () {
     $customerData = Customer::factory()->make()->toArray();
 
-    postJson(route('customerrs.store'), $customerData)
+    postJson(route('customers.store'), $customerData)
         ->assertStatus(201)
         ->assertJson([
             'success' => true,
