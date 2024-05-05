@@ -20,7 +20,7 @@ class CustomerRepository implements CustomerInterface
         return $this->model->orderBy('created_at', 'desc')->paginate(2);
     }
 
-    public function getById(int $id): Customer
+    public function getById(string $id): Customer
     {
         return $this->model->findOrFail($id);
     }

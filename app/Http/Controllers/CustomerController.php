@@ -24,7 +24,7 @@ class CustomerController extends Controller
         return response()->json(['data' => CustomerResource::collection($customers)], 200);
     }
 
-    public function show(int $id): JsonResponse
+    public function show(string $id): JsonResponse
     {
         $customer = $this->customerRepository->getById($id);
 
@@ -51,7 +51,7 @@ class CustomerController extends Controller
         }
     }
 
-    public function update(CustomerFormRequest $request, int $id): JsonResponse
+    public function update(CustomerFormRequest $request, string $id): JsonResponse
     {
         DB::beginTransaction();
 
@@ -72,7 +72,7 @@ class CustomerController extends Controller
         }
     }
 
-    public function destroy(int $id): JsonResponse
+    public function destroy(string $id): JsonResponse
     {
         DB::beginTransaction();
 

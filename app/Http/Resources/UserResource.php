@@ -14,11 +14,7 @@ class UserResource extends JsonResource
 
     public string $email;
 
-    public string $photo;
-
     public string $language;
-
-    public string $type;
 
     public function __construct($resource)
     {
@@ -28,9 +24,7 @@ class UserResource extends JsonResource
             $this->id       = (string) $resource->id;
             $this->name     = (string) $resource->name;
             $this->email    = (string) $resource->email;
-            $this->photo    = (string) $resource->photo;
             $this->language = (string) $resource->language;
-            $this->type     = (string) $resource->type;
         }
     }
 
@@ -47,9 +41,7 @@ class UserResource extends JsonResource
             'id'       => $this->id,
             'name'     => $this->name,
             'email'    => $this->email,
-            'photo'    => $this->photo,
             'language' => $this->language,
-            'type'     => $this->type,
         ];
     }
 }

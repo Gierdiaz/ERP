@@ -7,46 +7,44 @@ use App\Http\Requests\Auth\{LoginFormRequest, RegisterFormRequest};
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Notifications\Auth\VerifyEmailNotification;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\{Auth, Hash, Log}; // Adicionando a importação da classe VerifyEmailNotification
+use Illuminate\Http\{JsonResponse};
+use Illuminate\Support\Facades\{App, Auth, Hash, Log};
 
 class AuthenticationController extends Controller
 {
     public function register(RegisterFormRequest $request): JsonResponse
     {
         try {
-            $validated = $request->validated();
+            $request->validated();
 
-            $photo = null;
-
-            if ($request->hasFile('photo') && $request->file('photo') instanceof \Illuminate\Http\UploadedFile) {
-                $photo = $request->file('photo')->store('user-photo', 'public');
-            } else {
-                // Your logic for generating a default photo
-            }
-
-            /** @var User $user */
             $user = User::create([
-                'name'     => $validated['name'],
-                'email'    => $validated['email'],
-                'photo'    => $photo,
-                'language' => $validated['language'] ?? 'en',
-                'password' => $validated['password'] ? Hash::make($validated['password']) : null,
-                'type'     => 'admin',
+                'name'     => $request->input('name'),
+                'email'    => $request->input('email'),
+                'language' => $request->input('language'),
+                'password' => Hash::make($request->input('password')),
             ]);
 
             if (!$user) {
                 throw new \Exception(__('Error creating user'));
             }
 
-            $user->notify(new VerifyEmailNotification($user, $photo));
+            $user->notify(new VerifyEmailNotification($user));
 
-            Log::channel('register')->info('New user registered.', ['email' => $validated['email']]);
+            Log::channel('register')->info('New user registered.', ['email' => $request->input('email')]);
+
+            $language = $request->input('language');
+
+            if (is_string($language)) {
+                App::setLocale($language);
+            } else {
+                throw new \Exception(__('Invalid language format'));
+            }
 
             return response()->json([
-                'message' => __('User registered successfully. Verification email sent to ') . $validated['email'],
+                'message' => __('User registered successfully. Verification email sent to ') . $request->input('email'),
                 'user'    => new UserResource($user),
             ], 201);
+
         } catch (\Throwable $th) {
             Log::channel('register')->error('Failed to register user.', ['error' => $th->getMessage()]);
 
@@ -63,7 +61,7 @@ class AuthenticationController extends Controller
                 Log::channel('login')->debug('Failed login attempt.', ['email' => $request->email, 'ip' => $request->ip()]);
 
                 return response()->json([
-                    'message' => 'The provided credentials are incorrect.',
+                    'error' => 'The provided credentials are incorrect.',
                 ], 401);
             }
 
@@ -71,7 +69,7 @@ class AuthenticationController extends Controller
 
             if (!$user) {
                 return response()->json([
-                    'message' => 'User not found.',
+                    'error' => 'User not found.',
                 ], 404);
             }
 
@@ -91,4 +89,5 @@ class AuthenticationController extends Controller
             ], 500);
         }
     }
+
 }

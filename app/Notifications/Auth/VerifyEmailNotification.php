@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\{Log, Storage};
+use Illuminate\Support\Facades\{URL};
 
 class VerifyEmailNotification extends Notification
 {
@@ -14,50 +14,36 @@ class VerifyEmailNotification extends Notification
 
     protected $user;
 
-    protected $photo;
-
-    public function __construct(User $user, $photo)
+    public function __construct(User $user)
     {
-        $this->user  = $user;
-        $this->photo = $photo;
+        $this->user = $user;
     }
 
-    public function via(object $notifiable): array
+    public function via($notifiable)
     {
         return ['mail'];
     }
 
-    public function toMail(object $notifiable): MailMessage
+    public function toMail($notifiable)
     {
         $verificationUrl = $this->verificationUrl($notifiable);
 
-        if (Storage::disk('public')->exists($this->photo)) {
-            $avatarPath     = Storage::disk('public')->url($this->photo);
-            $avatarName     = basename($this->photo);
-            $avatarData     = Storage::disk('public')->get($this->photo);
-            $avatarMimeType = Storage::disk('public')->mimeType($this->photo);
-
-            return (new MailMessage())
-                ->subject('Verify New User Email Address')
-                ->markdown('emails.auth.verify_email', [
-                    'user'            => $this->user,
-                    'avatarPath'      => $avatarPath,
-                    'verificationUrl' => $verificationUrl,
-                ]);
-        } else {
-            Log::channel('error')->error('Avatar file does not exist: ' . $this->photo);
-        }
+        return (new MailMessage())
+            ->subject(__('Verify New User Email Address'))
+            ->line(__('Please click the button below to verify your email address.'))
+            ->action(__('Verify Email Address'), $verificationUrl)
+            ->line(__('If you did not create an account, no further action is required.'));
     }
 
-    protected function verificationUrl(object $notifiable): string
+    protected function verificationUrl($notifiable)
     {
-        return url(route('verification.verify', [
+        return URL::temporarySignedRoute('verification.verify', now()->addMinutes(60), [
             'id'   => $notifiable->getKey(),
             'hash' => sha1($notifiable->getEmailForVerification()),
-        ]));
+        ]);
     }
 
-    public function toArray(object $notifiable): array
+    public function toArray($notifiable)
     {
         return [
             //

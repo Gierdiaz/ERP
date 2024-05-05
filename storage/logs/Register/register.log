@@ -1,19 +1,15 @@
-[2024-04-30 12:48:58] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
-[2024-04-30 13:01:43] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
-[2024-04-30 13:29:52] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
-[2024-04-30 13:41:00] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
-[2024-04-30 14:00:26] local.ERROR: Failed to register user. {"error":"Expected response code \"354\" but got code \"550\", with message \"550 5.7.0 Too many emails per second. Please upgrade your plan https://mailtrap.io/billing/plans/testing\"."} 
-[2024-04-30 14:01:00] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
-[2024-04-30 14:20:37] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
-[2024-05-03 15:50:42] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
-[2024-05-03 15:51:25] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
-[2024-05-04 22:55:16] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
-[2024-05-04 22:58:12] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
-[2024-05-04 23:16:18] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
-[2024-05-04 23:16:43] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
-[2024-05-04 23:17:19] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
-[2024-05-04 23:20:34] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
-[2024-05-04 23:22:49] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
-[2024-05-04 23:23:44] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
-[2024-05-04 23:24:27] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
-[2024-05-04 23:30:17] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-05 02:56:17] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-05 02:56:58] local.ERROR: Failed to register user. {"error":"SQLSTATE[23505]: Unique violation: 7 ERRO:  duplicar valor da chave viola a restrição de unicidade \"users_email_unique\"
+DETAIL:  Chave (email)=(gierdiaz@hotmail.com) já existe. (Connection: pgsql, SQL: insert into \"users\" (\"name\", \"email\", \"language\", \"password\", \"id\", \"updated_at\", \"created_at\") values (Allison, gierdiaz@hotmail.com, en, $2y$12$qFXy1LLO4ryMClwsHXHCnOrhcp0Znrkl69ieLXHFEmfNTlzEUKdHu, 9bf79c51-756b-49b3-b8b7-71fcb07779d6, 2024-05-05 02:56:58, 2024-05-05 02:56:58))"} 
+[2024-05-05 02:57:08] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-05 02:58:11] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-05 02:58:11] testing.ERROR: Failed to register user. {"error":"Invalid language format"} 
+[2024-05-05 02:59:55] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-05 03:01:43] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-05 03:02:49] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-05 03:06:11] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-05 03:06:26] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-05 03:09:00] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-05 03:15:26] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-05 03:18:28] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-05 03:18:40] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 

@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Hash;
 
 use function Pest\Laravel\postJson;
 
@@ -11,6 +12,7 @@ it('registers a new user', function () {
     $userData = [
         'name'                  => 'Allison',
         'email'                 => 'gierdiaz@hotmail.com',
+        'language'              => 'en',
         'password'              => 'Gier3373@',
         'password_confirmation' => 'Gier3373@',
     ];
@@ -23,6 +25,7 @@ it('registers a new user', function () {
                 'id',
                 'name',
                 'email',
+                'language',
             ],
         ]);
 });
@@ -30,7 +33,7 @@ it('registers a new user', function () {
 it('logs in an existing user', function () {
     $user = User::factory()->create([
         'email'    => 'gierdiaz@hotmail.com',
-        'password' => bcrypt('Gier3373@'),
+        'password' => Hash::make('Gier3373@'),
     ]);
 
     $loginData = [
@@ -42,8 +45,8 @@ it('logs in an existing user', function () {
     postJson(route('login'), $loginData)
         ->assertStatus(200)
         ->assertJsonStructure([
-            'Message',
-            'Customer' => [
+            'message',
+            'customer' => [
                 'id',
                 'name',
                 'email',
@@ -51,7 +54,7 @@ it('logs in an existing user', function () {
                 'created_at',
                 'updated_at',
             ],
-            'Token',
+            'token',
         ]);
 });
 
@@ -65,6 +68,6 @@ it('fails login with incorrect credentials', function () {
     postJson(route('login'), $loginData)
         ->assertStatus(401)
         ->assertJson([
-            'message' => 'The provided credentials are incorrect.',
+            'error' => 'The provided credentials are incorrect.',
         ]);
 });

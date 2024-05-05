@@ -9,7 +9,7 @@ interface CustomerInterface
 {
     public function getAll(): LengthAwarePaginator;
 
-    public function getById(int $id): Customer;
+    public function getById(string $id): Customer;
 
     /**
      * @param array<mixed> $data
