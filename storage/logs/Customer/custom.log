@@ -49,3 +49,6 @@
 [2024-05-05 03:18:41] testing.INFO: Customer created successfully {"customer_id":"9bf7a415-ddbc-4ee9-9af4-141e9a430774"} 
 [2024-05-05 03:18:41] testing.INFO: Customer updated successfully {"customer_id":"9bf7a416-0193-4b5e-ad9a-3c5eaa97dd76"} 
 [2024-05-05 03:18:41] testing.INFO: Customer deleted successfully {"customer_id":"9bf7a416-2c50-4e93-98e2-98fd8e8c5b10"} 
+[2024-05-05 15:58:58] testing.INFO: Customer created successfully {"customer_id":"9bf8b3fc-87dd-4cf4-a57d-f83a190d2175"} 
+[2024-05-05 15:58:58] testing.INFO: Customer updated successfully {"customer_id":"9bf8b3fc-ac74-4d12-8f4c-26c614ec7298"} 
+[2024-05-05 15:58:58] testing.INFO: Customer deleted successfully {"customer_id":"9bf8b3fc-de8b-4a69-a9d1-9f7d230b5161"} 
