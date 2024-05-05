@@ -11,6 +11,9 @@ class RegisterFormRequest extends FormRequest
         return true;
     }
 
+    /**
+    * @return array<mixed>
+    */
     public function rules(): array
     {
         return [

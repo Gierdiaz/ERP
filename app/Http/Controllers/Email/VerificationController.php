@@ -5,41 +5,42 @@ namespace App\Http\Controllers\Email;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Email\EmailVerificationRequest;
 use App\Notifications\Auth\VerifyEmailNotification;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Log;
 
 class VerificationController extends Controller
 {
-    public function verify(EmailVerificationRequest $request)
-    {
-        $request->fulfill();
+    // public function verify(EmailVerificationRequest $request): JsonResponse
+    // {
+    //     $request->fulfill();
 
-        //Log::channel('verification')->info('User email verified.', ['email' => $request->user()->email]);
-        Log::channel('verification')->info('Email verification request received.', [
-            'id'   => $request->route('id'),
-            'hash' => $request->route('hash'),
-        ]);
+    //     //Log::channel('verification')->info('User email verified.', ['email' => $request->user()->email]);
+    //     Log::channel('verification')->info('Email verification request received.', [
+    //         'id'   => $request->route('id'),
+    //         'hash' => $request->route('hash'),
+    //     ]);
 
-        return response()->json(['message' => 'Email verified successfully.']);
-    }
+    //     return response()->json(['message' => 'Email verified successfully.']);
+    // }
 
-    public function resend(EmailVerificationRequest $request)
-    {
-        try {
-            $user = $request->user();
+    // public function resend(EmailVerificationRequest $request): JsonResponse
+    // {
+    //     try {
+    //         $user = $request->user();
 
-            if ($user->hasVerifiedEmail()) {
-                return response()->json(['message' => 'User has already verified email.'], 400);
-            }
+    //         if (!$user || $user->hasVerifiedEmail()) {
+    //             return response()->json(['message' => 'User has already verified email.'], 400);
+    //         }
 
-            $user->notify(new VerifyEmailNotification($user));
+    //         $user->notify(new VerifyEmailNotification($user));
 
-            Log::channel('verification')->info('Verification email resent.', ['email' => $user->email]);
+    //         Log::channel('verification')->info('Verification email resent.', ['email' => $user->email]);
 
-            return response()->json(['message' => 'Verification email resent successfully.']);
-        } catch (\Throwable $th) {
-            Log::channel('verification')->error('Failed to resend verification email.', ['error' => $th->getMessage()]);
+    //         return response()->json(['message' => 'Verification email resent successfully.']);
+    //     } catch (\Throwable $th) {
+    //         Log::channel('verification')->error('Failed to resend verification email.', ['error' => $th->getMessage()]);
 
-            return response()->json(['error' => 'Failed to resend verification email.'], 400);
-        }
-    }
+    //         return response()->json(['error' => 'Failed to resend verification email.'], 400);
+    //     }
+    // }
 }

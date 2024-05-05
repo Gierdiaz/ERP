@@ -11,6 +11,9 @@ class EmailVerificationRequest extends FormRequest
         return $this->user() != null;
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function rules(): array
     {
         return [

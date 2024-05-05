@@ -3,26 +3,28 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class WelcomeNotification extends Notification
+class WelcomeNotification extends Notification implements ShouldQueue
 {
     use Queueable;
 
-    protected $user;
+    protected Authenticatable $user;
 
-    public function __construct($user)
+    public function __construct(Authenticatable $user)
     {
         $this->user = $user;
     }
 
-    public function via($notifiable)
+    public function via($notifiable): array
     {
         return ['mail'];
     }
 
-    public function toMail($notifiable)
+    public function toMail($notifiable): MailMessage
     {
         return (new MailMessage())
             ->subject('Welcome to Our Platform!')
@@ -34,7 +36,7 @@ class WelcomeNotification extends Notification
             ->line('Enjoy your time on our platform!');
     }
 
-    public function toArray($notifiable)
+    public function toArray($notifiable): array
     {
         return [
             //

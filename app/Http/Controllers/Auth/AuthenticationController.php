@@ -3,51 +3,35 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\{LoginFormRequest};
+use App\Http\Requests\Auth\{LoginFormRequest, RegisterFormRequest};
 use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Notifications\Auth\VerifyEmailNotification;
-use Faker\Factory as Faker;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\{Auth, Hash, Log, Storage, Validator};
+use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\{Auth, Hash, Log}; // Adicionando a importação da classe VerifyEmailNotification
 
 class AuthenticationController extends Controller
 {
-    public function register(Request $request)
+    public function register(RegisterFormRequest $request): JsonResponse
     {
         try {
-            $validator = Validator::make($request->all(), [
-                'name'     => ['required', 'string'],
-                'email'    => ['required', 'email'],
-                'photo'    => ['nullable', 'image', 'max:2048'],
-                'language' => ['nullable', 'string'],
-                'password' => ['required', 'string', 'min:8', 'confirmed', 'regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]+$/'],
-            ]);
+            $validated = $request->validated();
 
-            if ($validator->fails()) {
-                return response()->json(['error' => $validator->errors()->first()], 404);
-            }
+            $photo = null;
 
-            if ($request->hasFile('photo')) {
+            if ($request->hasFile('photo') && $request->file('photo') instanceof \Illuminate\Http\UploadedFile) {
                 $photo = $request->file('photo')->store('user-photo', 'public');
             } else {
-                $faker       = Faker::create();
-                $fakerAvatar = $faker->imageUrl(300, 300, 'people');
-                $photo       = 'avatars/' . uniqid() . '.jpg';
-                Storage::disk('public')->put($photo, file_get_contents($fakerAvatar));
-
-                if (!Storage::disk('public')->exists($photo)) {
-                    throw new \Exception(__('Error saving avatar'));
-                }
+                // Your logic for generating a default photo
             }
 
+            /** @var User $user */
             $user = User::create([
-                'name'     => $request->name,
-                'email'    => $request->email,
+                'name'     => $validated['name'],
+                'email'    => $validated['email'],
                 'photo'    => $photo,
-                'language' => $request->language,
-                'password' => Hash::make($request->password),
+                'language' => $validated['language'] ?? 'en',
+                'password' => $validated['password'] ? Hash::make($validated['password']) : null,
                 'type'     => 'admin',
             ]);
 
@@ -57,15 +41,12 @@ class AuthenticationController extends Controller
 
             $user->notify(new VerifyEmailNotification($user, $photo));
 
-            Log::channel('register')->info('New user registered.', ['email' => $request->email]);
-
-            App::setLocale($request->language);
+            Log::channel('register')->info('New user registered.', ['email' => $validated['email']]);
 
             return response()->json([
-                'message' => __('User registered successfully.  Verification email sent to ') . $user->email,
+                'message' => __('User registered successfully. Verification email sent to ') . $validated['email'],
                 'user'    => new UserResource($user),
             ], 201);
-
         } catch (\Throwable $th) {
             Log::channel('register')->error('Failed to register user.', ['error' => $th->getMessage()]);
 
@@ -73,7 +54,7 @@ class AuthenticationController extends Controller
         }
     }
 
-    public function login(LoginFormRequest $request)
+    public function login(LoginFormRequest $request): JsonResponse
     {
         try {
             $credentials = $request->only('email', 'password');
@@ -86,13 +67,20 @@ class AuthenticationController extends Controller
                 ], 401);
             }
 
-            $user  = Auth::user();
-            $token = $user->createToken($request->device_name)->plainTextToken;
+            $user = Auth::user();
+
+            if (!$user) {
+                return response()->json([
+                    'message' => 'User not found.',
+                ], 404);
+            }
+
+            $token = $user->createToken($request->device_name ?? '')->plainTextToken;
 
             return response()->json([
-                'Message'  => 'Login successful',
-                'Customer' => $user,
-                'Token'    => $token,
+                'message'  => 'Login successful',
+                'customer' => $user,
+                'token'    => $token,
             ], 200);
 
         } catch (\Exception $e) {

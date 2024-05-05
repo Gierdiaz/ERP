@@ -13,6 +13,9 @@ class CustomerFormRequest extends FormRequest
         return true;
     }
 
+    /**
+     * @return array<mixed>
+     */
     public function rules(): array
     {
         $rules = [

@@ -3,16 +3,29 @@
 namespace App\Interfaces;
 
 use App\Models\Customer;
+use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 
 interface CustomerInterface
 {
-    public function getAll();
+    public function getAll(): LengthAwarePaginator;
 
-    public function getById($id);
+    public function getById(int $id): Customer;
 
-    public function create(array $data);
+    /**
+     * @param array<mixed> $data
+     * @return Customer
+     */
+    public function create(array $data): Customer;
 
-    public function update(Customer $customer, array $data);
+    /**
+     * @param array<mixed> $data
+     * @return Customer
+     */
+    public function update(Customer $customer, array $data): Customer;
 
-    public function delete(Customer $customer);
+    /**
+     * @param Customer $customer
+     * @return bool|null
+     */
+    public function delete(Customer $customer): ?bool;
 }

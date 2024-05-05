@@ -16,6 +16,9 @@ class MeetingInvitation extends Mailable
         //
     }
 
+    /**
+     * @return $this
+     */
     public function build()
     {
         return $this->subject('Convite para Reunião')

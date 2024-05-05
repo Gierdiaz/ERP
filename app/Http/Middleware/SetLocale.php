@@ -13,8 +13,10 @@ class SetLocale
     {
         $lang = null;
 
-        if (Auth::check() && Auth::user()->language) {
-            $lang = Auth::user()->language;
+        $user = Auth::user();
+
+        if ($user && $user->language) {
+            $lang = $user->language;
         } elseif ($request->hasHeader('Accept-Language')) {
             $lang = $request->header('Accept-Language');
         }
