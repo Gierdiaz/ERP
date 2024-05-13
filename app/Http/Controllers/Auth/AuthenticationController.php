@@ -6,8 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\{LoginFormRequest, RegisterFormRequest};
 use App\Http\Resources\UserResource;
 use App\Models\User;
-use App\Notifications\Auth\VerifyEmailNotification;
-use Illuminate\Http\{JsonResponse};
+use Illuminate\Http\{JsonResponse, Request};
 use Illuminate\Support\Facades\{App, Auth, Hash, Log};
 
 class AuthenticationController extends Controller
@@ -28,7 +27,8 @@ class AuthenticationController extends Controller
                 throw new \Exception(__('Error creating user'));
             }
 
-            $user->notify(new VerifyEmailNotification($user));
+            // Comentando a notificação por e-mail de verificação, pois o Passport não exige a verificação de e-mail
+            // $user->notify(new VerifyEmailNotification($user));
 
             Log::channel('register')->info('New user registered.', ['email' => $request->input('email')]);
 
@@ -41,7 +41,7 @@ class AuthenticationController extends Controller
             }
 
             return response()->json([
-                'message' => __('User registered successfully. Verification email sent to ') . $request->input('email'),
+                'message' => __('User registered successfully.'),
                 'user'    => new UserResource($user),
             ], 201);
 
@@ -73,11 +73,12 @@ class AuthenticationController extends Controller
                 ], 404);
             }
 
-            $token = $user->createToken($request->device_name ?? '')->plainTextToken;
+            // Gerando o token de acesso usando o Laravel Passport
+            $token = $user->createToken('Personal Access Token')->plainTextToken;
 
             return response()->json([
                 'message'  => 'Login successful',
-                'customer' => $user,
+                'user'     => new UserResource($user),
                 'token'    => $token,
             ], 200);
 
@@ -90,4 +91,13 @@ class AuthenticationController extends Controller
         }
     }
 
+    // Método para fazer logout usando o Laravel Passport
+    public function logout(Request $request): JsonResponse
+    {
+        $request->user()->tokens()->delete();
+
+        return response()->json([
+            'message' => 'Logged out successfully',
+        ]);
+    }
 }
