@@ -1,0 +1,5 @@
+[2024-05-14 19:58:16] local.ERROR: Failed to login. {"error":"Method Laravel\\Passport\\Guards\\TokenGuard::attempt does not exist.","ip":"127.0.0.1"} 
+[2024-05-14 19:58:54] local.ERROR: Failed to login. {"error":"Method Laravel\\Passport\\Guards\\TokenGuard::attempt does not exist.","ip":"127.0.0.1"} 
+[2024-05-14 20:06:06] local.ERROR: Failed to login. {"error":"Method Laravel\\Passport\\Guards\\TokenGuard::attempt does not exist.","ip":"127.0.0.1"} 
+[2024-05-14 20:20:58] local.ERROR: Failed to login. {"error":"Call to undefined method App\\Models\\User::token()","ip":"127.0.0.1"} 
+[2024-05-14 20:21:09] local.ERROR: Failed to login. {"error":"Call to undefined method App\\Models\\User::token()","ip":"127.0.0.1"} 

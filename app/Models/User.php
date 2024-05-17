@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -16,11 +17,21 @@ class User extends Authenticatable implements MustVerifyEmail
     use Notifiable;
     use HasApiTokens;
     use HasUuids;
+    use HasRoles;
+
+    protected $table = 'users';
+
+    protected $keyType = 'string';
+
+    protected $primaryKey = 'id';
+
+    public $incrementing = false;
 
     protected $fillable = [
         'name',
         'email',
         'password',
+        'role',
         'language',
     ];
 
@@ -34,8 +45,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'password'          => 'hashed',
     ];
 
+    public function profile(): HasOne
+    {
+        return $this->hasOne(Profile::class, 'profile_id');
+    }
+
     public function customer(): HasOne
     {
-        return $this->hasOne(Customer::class);
+        return $this->hasOne(Customer::class, 'user_id');
     }
+
 }

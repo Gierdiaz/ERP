@@ -15,3 +15,10 @@ DETAIL:  Chave (email)=(gierdiaz@hotmail.com) já existe. (Connection: pgsql, SQ
 [2024-05-05 03:18:40] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
 [2024-05-05 15:58:56] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
 [2024-05-05 16:01:42] testing.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-14 19:56:25] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-14 20:06:03] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-14 20:07:05] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-14 20:12:33] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-14 20:20:54] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-14 20:25:04] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-15 11:40:10] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 

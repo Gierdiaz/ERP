@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\{LoginFormRequest, RegisterFormRequest};
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Notifications\Auth\VerifyEmailNotification;
 use Illuminate\Http\{JsonResponse, Request};
 use Illuminate\Support\Facades\{App, Auth, Hash, Log};
 
@@ -27,8 +28,9 @@ class AuthenticationController extends Controller
                 throw new \Exception(__('Error creating user'));
             }
 
-            // Comentando a notificação por e-mail de verificação, pois o Passport não exige a verificação de e-mail
-            // $user->notify(new VerifyEmailNotification($user));
+            $user->assignRole('regular');
+
+            $user->notify(new VerifyEmailNotification($user));
 
             Log::channel('register')->info('New user registered.', ['email' => $request->input('email')]);
 
@@ -74,12 +76,12 @@ class AuthenticationController extends Controller
             }
 
             // Gerando o token de acesso usando o Laravel Passport
-            $token = $user->createToken('Personal Access Token')->plainTextToken;
+            $token = $user->createToken('TokenName')->plainTextToken;
 
             return response()->json([
-                'message'  => 'Login successful',
-                'user'     => new UserResource($user),
-                'token'    => $token,
+                'message' => 'Login successful',
+                'user'    => new UserResource($user),
+                'token'   => $token,
             ], 200);
 
         } catch (\Exception $e) {

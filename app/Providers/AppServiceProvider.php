@@ -6,8 +6,9 @@ use App\Http\Middleware\SetLocale;
 use App\Interfaces\{CustomerInterface};
 use App\Models\{User};
 use App\Observers\UserObserver;
+use App\Policies\CustomerPolicy;
 use App\Repositories\{CustomerRepository};
-use Illuminate\Support\Facades\{Route};
+use Illuminate\Support\Facades\{Gate, Route};
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -22,6 +23,8 @@ class AppServiceProvider extends ServiceProvider
     {
         Route::pushMiddlewareToGroup('api', SetLocale::class);
         User::observe(UserObserver::class);
+
+        Gate::resource('customer', CustomerPolicy::class);
     }
 
 }
