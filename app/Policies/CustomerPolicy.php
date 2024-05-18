@@ -18,7 +18,8 @@ class CustomerPolicy
 
     public function create(User $user): bool
     {
-        Log::info('Checking if user can create customers', ['user_id' => $user->id]);
+        return $user->hasRole('admin');
+        return $user->hasPermissionTo('create customers');
         return $user->can('create customers');
     }
 

@@ -1,0 +1,261 @@
+[2024-05-18 17:08:13] local.INFO: Checking if user can create customers {"user_id":"9c12e9aa-162d-436e-ab15-1ec1f6f532d3"} 
+[2024-05-18 17:08:30] local.INFO: Checking if user can create customers {"user_id":"9c12e9aa-162d-436e-ab15-1ec1f6f532d3"} 
+[2024-05-18 17:09:01] local.INFO: Checking if user can create customers {"user_id":"9c12e9aa-162d-436e-ab15-1ec1f6f532d3"} 
+[2024-05-18 18:00:04] local.ERROR: syntax error, unexpected token "}", expecting "," or ";" {"exception":"[object] (Symfony\\Component\\ErrorHandler\\Error\\FatalError(code: 0): syntax error, unexpected token \"}\", expecting \",\" or \";\" at C:\\xampp\\htdocs\\Academico\\ERP\\app\\Models\\Permission.php:23)
+[stacktrace]
+#0 {main}
+"} 
+[2024-05-18 18:05:34] local.ERROR: There is no role named `api` for guard `web`. {"exception":"[object] (Spatie\\Permission\\Exceptions\\RoleDoesNotExist(code: 0): There is no role named `api` for guard `web`. at C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\spatie\\laravel-permission\\src\\Exceptions\\RoleDoesNotExist.php:11)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\spatie\\laravel-permission\\src\\Models\\Role.php(105): Spatie\\Permission\\Exceptions\\RoleDoesNotExist::named()
+#1 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\spatie\\laravel-permission\\src\\Traits\\HasRoles.php(391): Spatie\\Permission\\Models\\Role::findByName()
+#2 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\spatie\\laravel-permission\\src\\Traits\\HasRoles.php(127): App\\Models\\User->getStoredRole()
+#3 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Collections\\Traits\\EnumeratesValues.php(792): App\\Models\\User->Spatie\\Permission\\Traits\\{closure}()
+#4 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\spatie\\laravel-permission\\src\\Traits\\HasRoles.php(122): Illuminate\\Support\\Collection->reduce()
+#5 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\spatie\\laravel-permission\\src\\Traits\\HasRoles.php(149): App\\Models\\User->collectRoles()
+#6 C:\\xampp\\htdocs\\Academico\\ERP\\database\\seeders\\UserTableSeeder.php(62): App\\Models\\User->assignRole()
+#7 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Database\\Seeders\\UserTableSeeder->run()
+#8 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#9 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()
+#10 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#11 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call()
+#12 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Seeder.php(184): Illuminate\\Container\\Container->call()
+#13 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Seeder.php(193): Illuminate\\Database\\Seeder->Illuminate\\Database\\{closure}()
+#14 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Seeder.php(61): Illuminate\\Database\\Seeder->__invoke()
+#15 C:\\xampp\\htdocs\\Academico\\ERP\\database\\seeders\\DatabaseSeeder.php(13): Illuminate\\Database\\Seeder->call()
+#16 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Database\\Seeders\\DatabaseSeeder->run()
+#17 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#18 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()
+#19 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#20 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call()
+#21 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Seeder.php(184): Illuminate\\Container\\Container->call()
+#22 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Seeder.php(193): Illuminate\\Database\\Seeder->Illuminate\\Database\\{closure}()
+#23 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Seeds\\SeedCommand.php(70): Illuminate\\Database\\Seeder->__invoke()
+#24 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\GuardsAttributes.php(155): Illuminate\\Database\\Console\\Seeds\\SeedCommand->Illuminate\\Database\\Console\\Seeds\\{closure}()
+#25 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Seeds\\SeedCommand.php(69): Illuminate\\Database\\Eloquent\\Model::unguarded()
+#26 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Database\\Console\\Seeds\\SeedCommand->handle()
+#27 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#28 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()
+#29 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#30 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call()
+#31 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(212): Illuminate\\Container\\Container->call()
+#32 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\symfony\\console\\Command\\Command.php(279): Illuminate\\Console\\Command->execute()
+#33 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(181): Symfony\\Component\\Console\\Command\\Command->run()
+#34 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Concerns\\CallsCommands.php(67): Illuminate\\Console\\Command->run()
+#35 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Concerns\\CallsCommands.php(28): Illuminate\\Console\\Command->runCommand()
+#36 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\FreshCommand.php(120): Illuminate\\Console\\Command->call()
+#37 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\FreshCommand.php(96): Illuminate\\Database\\Console\\Migrations\\FreshCommand->runSeeder()
+#38 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Database\\Console\\Migrations\\FreshCommand->handle()
+#39 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#40 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()
+#41 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#42 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call()
+#43 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(212): Illuminate\\Container\\Container->call()
+#44 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\symfony\\console\\Command\\Command.php(279): Illuminate\\Console\\Command->execute()
+#45 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(181): Symfony\\Component\\Console\\Command\\Command->run()
+#46 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\symfony\\console\\Application.php(1049): Illuminate\\Console\\Command->run()
+#47 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\symfony\\console\\Application.php(318): Symfony\\Component\\Console\\Application->doRunCommand()
+#48 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\symfony\\console\\Application.php(169): Symfony\\Component\\Console\\Application->doRun()
+#49 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(196): Symfony\\Component\\Console\\Application->run()
+#50 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1187): Illuminate\\Foundation\\Console\\Kernel->handle()
+#51 C:\\xampp\\htdocs\\Academico\\ERP\\artisan(13): Illuminate\\Foundation\\Application->handleCommand()
+#52 {main}
+"} 
+[2024-05-18 18:07:59] local.ERROR: There is no role named `api` for guard `web`. {"exception":"[object] (Spatie\\Permission\\Exceptions\\RoleDoesNotExist(code: 0): There is no role named `api` for guard `web`. at C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\spatie\\laravel-permission\\src\\Exceptions\\RoleDoesNotExist.php:11)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\spatie\\laravel-permission\\src\\Models\\Role.php(105): Spatie\\Permission\\Exceptions\\RoleDoesNotExist::named()
+#1 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\spatie\\laravel-permission\\src\\Traits\\HasRoles.php(391): Spatie\\Permission\\Models\\Role::findByName()
+#2 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\spatie\\laravel-permission\\src\\Traits\\HasRoles.php(127): App\\Models\\User->getStoredRole()
+#3 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Collections\\Traits\\EnumeratesValues.php(792): App\\Models\\User->Spatie\\Permission\\Traits\\{closure}()
+#4 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\spatie\\laravel-permission\\src\\Traits\\HasRoles.php(122): Illuminate\\Support\\Collection->reduce()
+#5 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\spatie\\laravel-permission\\src\\Traits\\HasRoles.php(149): App\\Models\\User->collectRoles()
+#6 C:\\xampp\\htdocs\\Academico\\ERP\\database\\seeders\\UserTableSeeder.php(58): App\\Models\\User->assignRole()
+#7 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Database\\Seeders\\UserTableSeeder->run()
+#8 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#9 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()
+#10 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#11 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call()
+#12 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Seeder.php(184): Illuminate\\Container\\Container->call()
+#13 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Seeder.php(193): Illuminate\\Database\\Seeder->Illuminate\\Database\\{closure}()
+#14 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Seeder.php(61): Illuminate\\Database\\Seeder->__invoke()
+#15 C:\\xampp\\htdocs\\Academico\\ERP\\database\\seeders\\DatabaseSeeder.php(13): Illuminate\\Database\\Seeder->call()
+#16 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Database\\Seeders\\DatabaseSeeder->run()
+#17 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#18 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()
+#19 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#20 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call()
+#21 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Seeder.php(184): Illuminate\\Container\\Container->call()
+#22 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Seeder.php(193): Illuminate\\Database\\Seeder->Illuminate\\Database\\{closure}()
+#23 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Seeds\\SeedCommand.php(70): Illuminate\\Database\\Seeder->__invoke()
+#24 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Eloquent\\Concerns\\GuardsAttributes.php(155): Illuminate\\Database\\Console\\Seeds\\SeedCommand->Illuminate\\Database\\Console\\Seeds\\{closure}()
+#25 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Seeds\\SeedCommand.php(69): Illuminate\\Database\\Eloquent\\Model::unguarded()
+#26 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Database\\Console\\Seeds\\SeedCommand->handle()
+#27 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#28 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()
+#29 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#30 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call()
+#31 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(212): Illuminate\\Container\\Container->call()
+#32 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\symfony\\console\\Command\\Command.php(279): Illuminate\\Console\\Command->execute()
+#33 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(181): Symfony\\Component\\Console\\Command\\Command->run()
+#34 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Concerns\\CallsCommands.php(67): Illuminate\\Console\\Command->run()
+#35 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Concerns\\CallsCommands.php(28): Illuminate\\Console\\Command->runCommand()
+#36 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\FreshCommand.php(120): Illuminate\\Console\\Command->call()
+#37 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Console\\Migrations\\FreshCommand.php(96): Illuminate\\Database\\Console\\Migrations\\FreshCommand->runSeeder()
+#38 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(36): Illuminate\\Database\\Console\\Migrations\\FreshCommand->handle()
+#39 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(41): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#40 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(93): Illuminate\\Container\\Util::unwrapIfClosure()
+#41 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod()
+#42 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(662): Illuminate\\Container\\BoundMethod::call()
+#43 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(212): Illuminate\\Container\\Container->call()
+#44 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\symfony\\console\\Command\\Command.php(279): Illuminate\\Console\\Command->execute()
+#45 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Console\\Command.php(181): Symfony\\Component\\Console\\Command\\Command->run()
+#46 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\symfony\\console\\Application.php(1049): Illuminate\\Console\\Command->run()
+#47 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\symfony\\console\\Application.php(318): Symfony\\Component\\Console\\Application->doRunCommand()
+#48 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\symfony\\console\\Application.php(169): Symfony\\Component\\Console\\Application->doRun()
+#49 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Console\\Kernel.php(196): Symfony\\Component\\Console\\Application->run()
+#50 C:\\xampp\\htdocs\\Academico\\ERP\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1187): Illuminate\\Foundation\\Console\\Kernel->handle()
+#51 C:\\xampp\\htdocs\\Academico\\ERP\\artisan(13): Illuminate\\Foundation\\Application->handleCommand()
+#52 {main}
+"} 
+[2024-05-18 18:09:03] local.DEBUG: From: Laravel <hello@example.com>
+To: gierdiaz@hotmail.com
+Subject: Verify New User Email Address
+MIME-Version: 1.0
+Date: Sat, 18 May 2024 18:09:03 +0000
+Message-ID: <d57784e8e93c64007f9aa0b288ae8a93@example.com>
+Content-Type: multipart/alternative; boundary=-Nva2K8t
+
+---Nva2K8t
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Laravel: http://localhost
+
+# Hello!
+
+Please click the button below to verify your email address.
+
+Verify Email Address: http://127.0.0.1:8000/api/email/verify/9c13094c-1cf9-4be4-a006-49f34c5de0b8/6035591e53f83f4b6a0fe76d83ece05b2f3deeb5?expires=1716059343&signature=2eb071f95396efbf6be0b5f18a65490069543e4f0d8f5692d90068b11a5db215
+
+If you did not create an account, no further action is required.
+
+Regards,
+Laravel
+
+If you're having trouble clicking the "Verify Email Address" button, copy and paste the URL below
+into your web browser: [http://127.0.0.1:8000/api/email/verify/9c13094c-1cf9-4be4-a006-49f34c5de0b8/6035591e53f83f4b6a0fe76d83ece05b2f3deeb5?expires=1716059343&signature=2eb071f95396efbf6be0b5f18a65490069543e4f0d8f5692d90068b11a5db215](http://127.0.0.1:8000/api/email/verify/9c13094c-1cf9-4be4-a006-49f34c5de0b8/6035591e53f83f4b6a0fe76d83ece05b2f3deeb5?expires=1716059343&signature=2eb071f95396efbf6be0b5f18a65490069543e4f0d8f5692d90068b11a5db215)
+
+© 2024 Laravel. All rights reserved.
+
+---Nva2K8t
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Laravel</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<style>
+@media only screen and (max-width: 600px) {
+.inner-body {
+width: 100% !important;
+}
+
+.footer {
+width: 100% !important;
+}
+}
+
+@media only screen and (max-width: 500px) {
+.button {
+width: 100% !important;
+}
+}
+</style>
+</head>
+<body style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -webkit-text-size-adjust: none; background-color: #ffffff; color: #718096; height: 100%; line-height: 1.4; margin: 0; padding: 0; width: 100% !important;">
+
+<table class="wrapper" width="100%" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%; background-color: #edf2f7; margin: 0; padding: 0; width: 100%;">
+<tr>
+<td align="center" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+<table class="content" width="100%" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%; margin: 0; padding: 0; width: 100%;">
+<tr>
+<td class="header" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; padding: 25px 0; text-align: center;">
+<a href="http://localhost" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; color: #3d4852; font-size: 19px; font-weight: bold; text-decoration: none; display: inline-block;">
+<img src="https://laravel.com/img/notification-logo.png" class="logo" alt="Laravel Logo" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100%; border: none; height: 75px; max-height: 75px; width: 75px;">
+</a>
+</td>
+</tr>
+
+<!-- Email Body -->
+<tr>
+<td class="body" width="100%" cellpadding="0" cellspacing="0" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%; background-color: #edf2f7; border-bottom: 1px solid #edf2f7; border-top: 1px solid #edf2f7; margin: 0; padding: 0; width: 100%; border: hidden !important;">
+<table class="inner-body" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 570px; background-color: #ffffff; border-color: #e8e5ef; border-radius: 2px; border-width: 1px; box-shadow: 0 2px 0 rgba(0, 0, 150, 0.025), 2px 4px 0 rgba(0, 0, 150, 0.015); margin: 0 auto; padding: 0; width: 570px;">
+<!-- Body content -->
+<tr>
+<td class="content-cell" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100vw; padding: 32px;">
+<h1 style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; color: #3d4852; font-size: 18px; font-weight: bold; margin-top: 0; text-align: left;">Hello!</h1>
+<p style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">Please click the button below to verify your email address.</p>
+<table class="action" align="center" width="100%" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 100%; margin: 30px auto; padding: 0; text-align: center; width: 100%;">
+<tr>
+<td align="center" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+<table width="100%" border="0" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+<tr>
+<td align="center" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+<table border="0" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+<tr>
+<td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+<a href="http://127.0.0.1:8000/api/email/verify/9c13094c-1cf9-4be4-a006-49f34c5de0b8/6035591e53f83f4b6a0fe76d83ece05b2f3deeb5?expires=1716059343&amp;signature=2eb071f95396efbf6be0b5f18a65490069543e4f0d8f5692d90068b11a5db215" class="button button-primary" target="_blank" rel="noopener" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -webkit-text-size-adjust: none; border-radius: 4px; color: #fff; display: inline-block; overflow: hidden; text-decoration: none; background-color: #2d3748; border-bottom: 8px solid #2d3748; border-left: 18px solid #2d3748; border-right: 18px solid #2d3748; border-top: 8px solid #2d3748;">Verify Email Address</a>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<p style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">If you did not create an account, no further action is required.</p>
+<p style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; font-size: 16px; line-height: 1.5em; margin-top: 0; text-align: left;">Regards,<br>
+Laravel</p>
+
+
+<table class="subcopy" width="100%" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; border-top: 1px solid #e8e5ef; margin-top: 25px; padding-top: 25px;">
+<tr>
+<td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+<p style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; line-height: 1.5em; margin-top: 0; text-align: left; font-size: 14px;">If you're having trouble clicking the "Verify Email Address" button, copy and paste the URL below
+into your web browser: <span class="break-all" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; word-break: break-all;"><a href="http://127.0.0.1:8000/api/email/verify/9c13094c-1cf9-4be4-a006-49f34c5de0b8/6035591e53f83f4b6a0fe76d83ece05b2f3deeb5?expires=1716059343&amp;signature=2eb071f95396efbf6be0b5f18a65490069543e4f0d8f5692d90068b11a5db215" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; color: #3869d4;">http://127.0.0.1:8000/api/email/verify/9c13094c-1cf9-4be4-a006-49f34c5de0b8/6035591e53f83f4b6a0fe76d83ece05b2f3deeb5?expires=1716059343&amp;signature=2eb071f95396efbf6be0b5f18a65490069543e4f0d8f5692d90068b11a5db215</a></span></p>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<tr>
+<td style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative;">
+<table class="footer" align="center" width="570" cellpadding="0" cellspacing="0" role="presentation" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; -premailer-cellpadding: 0; -premailer-cellspacing: 0; -premailer-width: 570px; margin: 0 auto; padding: 0; text-align: center; width: 570px;">
+<tr>
+<td class="content-cell" align="center" style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; max-width: 100vw; padding: 32px;">
+<p style="box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; position: relative; line-height: 1.5em; margin-top: 0; color: #b0adc5; font-size: 12px; text-align: center;">© 2024 Laravel. All rights reserved.</p>
+
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+</body>
+</html>
+---Nva2K8t--
+  

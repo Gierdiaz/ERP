@@ -18,4 +18,9 @@ class Role extends SpatieRole
     protected $primaryKey = 'id';
 
     public $incrementing = false;
+
+    protected $fillable = [
+        'name',
+        'guard_name'
+    ];
 }

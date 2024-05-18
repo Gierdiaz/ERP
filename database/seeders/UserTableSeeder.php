@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\{Permission, Role, User};
+use App\Models\Permission;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
@@ -19,19 +21,28 @@ class UserTableSeeder extends Seeder
             'revoke_all_access_customer',
         ];
 
-        // Criar permissões
         foreach ($permissions as $permission) {
-            Permission::firstOrCreate(['name' => $permission]);
+            Permission::firstOrCreate([
+                'name' => $permission,
+            ]);
         }
 
-        // Criar roles e associar permissões
-        $adminRole = Role::firstOrCreate(['name' => 'admin']);
+        $adminRole = Role::firstOrCreate([
+            'name' => 'admin',
+        ]);
+
         $adminRole->syncPermissions($permissions);
 
-        $regularRole = Role::firstOrCreate(['name' => 'regular']);
+        $regularRole = Role::firstOrCreate([
+            'name' => 'regular',
+        ]);
+
         $regularRole->syncPermissions(['view customers']);
 
-        $restrictedRole = Role::firstOrCreate(['name' => 'restricted']);
+        $restrictedRole = Role::firstOrCreate([
+            'name' => 'restricted',
+        ]);
+
         $restrictedRole->syncPermissions([]);
 
         // Criar usuário admin
@@ -40,7 +51,7 @@ class UserTableSeeder extends Seeder
             [
                 'name' => 'Állison',
                 'password' => bcrypt('password'),
-                'role' => 'admin',
+                'role' => 'admin'
             ]
         );
 
@@ -52,7 +63,6 @@ class UserTableSeeder extends Seeder
             [
                 'name' => 'Regular User',
                 'password' => bcrypt('password'),
-                'role' => 'regular',
             ]
         );
 
