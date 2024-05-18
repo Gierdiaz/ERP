@@ -2,3 +2,4 @@
 [2024-05-18 18:03:36] local.ERROR: Failed to register user. {"error":"SQLSTATE[23505]: Unique violation: 7 ERRO:  duplicar valor da chave viola a restrição de unicidade \"users_email_unique\"
 DETAIL:  Chave (email)=(gierdiaz@hotmail.com) já existe. (Connection: pgsql, SQL: insert into \"users\" (\"name\", \"email\", \"language\", \"password\", \"id\", \"updated_at\", \"created_at\") values (Allison, gierdiaz@hotmail.com, en, $2y$12$FZi5H9HlRIlqRCiIOo0YDOye7hZoDudYcaB4Z6X7brRci5LzrppOK, 9c13075a-7bd4-4034-9412-fe40caa7b4c6, 2024-05-18 18:03:36, 2024-05-18 18:03:36))"} 
 [2024-05-18 18:09:03] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-18 19:14:40] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 

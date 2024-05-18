@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthenticationController;
 use App\Http\Controllers\Email\VerificationController;
-use App\Http\Controllers\{CustomerController};
+use App\Http\Controllers\{CustomerController, UserController};
 use Illuminate\Support\Facades\Route;
 
 // Routes for registration and login using Passport
@@ -60,3 +60,44 @@ Route::middleware(['auth:sanctum'])->group(function () {
         ->name('users.revokeAllAccess');
 
 });
+
+
+// Rota para listar usuários
+Route::get('users', [UserController::class, 'index'])
+->middleware('can:view users')
+->name('users.index');
+
+// Rota para exibir um único usuário
+Route::get('users/{user}', [UserController::class, 'show'])
+->middleware('can:view users')
+->name('users.show');
+
+// Rota para criar um novo usuário
+Route::post('users', [UserController::class, 'store'])
+->middleware('can:create users')
+->name('users.store');
+
+// Rota para atualizar um usuário existente
+Route::put('users/{user}', [UserController::class, 'update'])
+->middleware('can:update users')
+->name('users.update');
+
+// Rota para excluir um usuário
+Route::delete('users/{user}', [UserController::class, 'destroy'])
+->middleware('can:delete users')
+->name('users.destroy');
+
+// Rota para atribuir uma role a um usuário específico
+Route::post('users/{user}/assign-role', [UserController::class, 'assignRole'])
+->middleware('can:assign roles')
+->name('users.assignRole');
+
+// Rota para remover uma role de um usuário específico
+Route::post('users/{user}/remove-role', [UserController::class, 'removeRole'])
+->middleware('can:remove roles')
+->name('users.removeRole');
+
+// Rota para verificar se o usuário é admin
+Route::get('users/some-method', [UserController::class, 'someMethod'])
+->middleware('can:view users')
+->name('users.someMethod');

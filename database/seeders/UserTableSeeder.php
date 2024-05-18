@@ -11,6 +11,7 @@ class UserTableSeeder extends Seeder
 {
     public function run(): void
     {
+        // Definindo permissões
         $permissions = [
             'view customers',
             'create customers',
@@ -22,42 +23,30 @@ class UserTableSeeder extends Seeder
         ];
 
         foreach ($permissions as $permission) {
-            Permission::firstOrCreate([
-                'name' => $permission,
-            ]);
+            Permission::firstOrCreate(['name' => $permission]);
         }
 
-        $adminRole = Role::firstOrCreate([
-            'name' => 'admin',
-        ]);
-
+        // Definindo roles e associando permissões
+        $adminRole = Role::firstOrCreate(['name' => 'admin']);
         $adminRole->syncPermissions($permissions);
 
-        $regularRole = Role::firstOrCreate([
-            'name' => 'regular',
-        ]);
-
+        $regularRole = Role::firstOrCreate(['name' => 'regular']);
         $regularRole->syncPermissions(['view customers']);
 
-        $restrictedRole = Role::firstOrCreate([
-            'name' => 'restricted',
-        ]);
-
+        $restrictedRole = Role::firstOrCreate(['name' => 'restricted']);
         $restrictedRole->syncPermissions([]);
 
-        // Criar usuário admin
+        // Criando usuário admin
         $admin = User::updateOrCreate(
             ['email' => 'gierdiaz@admin'],
             [
                 'name' => 'Állison',
                 'password' => bcrypt('password'),
-                'role' => 'admin'
             ]
         );
-
         $admin->assignRole($adminRole);
 
-        // Criar usuário regular
+        // Criando usuário regular
         $regularUser = User::updateOrCreate(
             ['email' => 'user@example.com'],
             [
@@ -65,7 +54,7 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt('password'),
             ]
         );
-
         $regularUser->assignRole($regularRole);
     }
 }
+

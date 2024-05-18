@@ -18,9 +18,11 @@ class CustomerPolicy
 
     public function create(User $user): bool
     {
-        return $user->hasRole('admin');
-        return $user->hasPermissionTo('create customers');
-        return $user->can('create customers');
+        return $user->hasRole('admin'); //|| $user->hasPermissionTo('create customers');
+        //return $user->role === 'admin';
+        //return $user->hasRole('admin');
+        //return $user->hasPermissionTo('create customers');
+        //return $user->can('create customers');
     }
 
     public function update(User $user, Customer $customer): bool
