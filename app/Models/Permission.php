@@ -20,6 +20,6 @@ class Permission extends SpatiePermission
     public $incrementing = false;
 
     protected $fillable = [
-        'name'
+        'name',
     ];
 }

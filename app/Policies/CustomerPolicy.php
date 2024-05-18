@@ -2,10 +2,8 @@
 
 namespace App\Policies;
 
-use App\Models\Customer;
-use App\Models\User;
+use App\Models\{Customer, User};
 use Illuminate\Auth\Access\HandlesAuthorization;
-use Illuminate\Support\Facades\Log;
 
 class CustomerPolicy
 {
@@ -18,7 +16,7 @@ class CustomerPolicy
 
     public function create(User $user): bool
     {
-        return $user->hasRole('admin'); //|| $user->hasPermissionTo('create customers');
+        return $user->hasRole('admin') || $user->hasPermissionTo('create customers');
         //return $user->role === 'admin';
         //return $user->hasRole('admin');
         //return $user->hasPermissionTo('create customers');

@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\{Role, User};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
     public function index()
     {
         $users = User::all();
+
         return response()->json($users);
     }
 
@@ -23,16 +23,19 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'name'     => 'required|string|max:255',
+            'email'    => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
         $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
+            'name'     => $request->name,
+            'email'    => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        $adminRole = Role::where('name', 'admin')->first();
+        $user->assignRole($adminRole);
 
         return response()->json($user, 201);
     }
@@ -40,17 +43,19 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'name' => 'sometimes|required|string|max:255',
-            'email' => 'sometimes|required|string|email|max:255|unique:users,email,' . $user->id,
+            'name'     => 'sometimes|required|string|max:255',
+            'email'    => 'sometimes|required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'sometimes|nullable|string|min:8|confirmed',
         ]);
 
         if ($request->has('name')) {
             $user->name = $request->name;
         }
+
         if ($request->has('email')) {
             $user->email = $request->email;
         }
+
         if ($request->has('password')) {
             $user->password = Hash::make($request->password);
         }
@@ -63,6 +68,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+
         return response()->json(null, 204);
     }
 
@@ -95,9 +101,9 @@ class UserController extends Controller
         $user = $request->user();
 
         if ($user->hasRole('admin')) {
-            return 'Usuário é admin';
+            return response()->json(['message' => 'Usuário é admin']);
         } else {
-            return 'Usuário não é admin';
+            return response()->json(['message' => 'Usuário não é admin']);
         }
     }
 

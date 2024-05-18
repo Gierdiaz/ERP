@@ -3,3 +3,7 @@
 DETAIL:  Chave (email)=(gierdiaz@hotmail.com) já existe. (Connection: pgsql, SQL: insert into \"users\" (\"name\", \"email\", \"language\", \"password\", \"id\", \"updated_at\", \"created_at\") values (Allison, gierdiaz@hotmail.com, en, $2y$12$FZi5H9HlRIlqRCiIOo0YDOye7hZoDudYcaB4Z6X7brRci5LzrppOK, 9c13075a-7bd4-4034-9412-fe40caa7b4c6, 2024-05-18 18:03:36, 2024-05-18 18:03:36))"} 
 [2024-05-18 18:09:03] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
 [2024-05-18 19:14:40] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-18 20:40:49] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-18 20:54:26] local.ERROR: Failed to register user. {"error":"There is no role named `regular` for guard `web`."} 
+[2024-05-18 21:07:58] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 
+[2024-05-18 21:11:45] local.INFO: New user registered. {"email":"gierdiaz@hotmail.com"} 

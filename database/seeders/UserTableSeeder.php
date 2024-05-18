@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Permission;
-use App\Models\Role;
-use App\Models\User;
+use App\Models\{Permission, Role, User};
 use Illuminate\Database\Seeder;
 
 class UserTableSeeder extends Seeder
@@ -40,7 +38,7 @@ class UserTableSeeder extends Seeder
         $admin = User::updateOrCreate(
             ['email' => 'gierdiaz@admin'],
             [
-                'name' => 'Állison',
+                'name'     => 'Állison',
                 'password' => bcrypt('password'),
             ]
         );
@@ -50,11 +48,10 @@ class UserTableSeeder extends Seeder
         $regularUser = User::updateOrCreate(
             ['email' => 'user@example.com'],
             [
-                'name' => 'Regular User',
+                'name'     => 'Regular User',
                 'password' => bcrypt('password'),
             ]
         );
         $regularUser->assignRole($regularRole);
     }
 }
-
