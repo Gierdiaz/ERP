@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
+ * @property string $id
  * @property string $name
  * @property string $email
  * @property string $phone
@@ -25,6 +26,7 @@ class CustomerResource extends JsonResource
     {
         /** @var Customer $this */
         return [
+            'id'      => $this->id,
             'user'    => $this->user ? $this->user->name : null,
             'name'    => $this->name,
             'email'   => $this->email,

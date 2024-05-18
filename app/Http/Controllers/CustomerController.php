@@ -41,7 +41,9 @@ class CustomerController extends Controller
 
     public function store(CustomerFormRequest $request): JsonResponse
     {
+        dd($request);
         $this->authorize('create', Customer::class);
+
 
         DB::beginTransaction();
 

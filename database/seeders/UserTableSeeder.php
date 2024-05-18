@@ -19,36 +19,43 @@ class UserTableSeeder extends Seeder
             'revoke_all_access_customer',
         ];
 
+        // Criar permissões
         foreach ($permissions as $permission) {
             Permission::firstOrCreate(['name' => $permission]);
         }
 
-        $role = Role::firstOrCreate(['name' => 'admin']);
-        $role->syncPermissions($permissions);
+        // Criar roles e associar permissões
+        $adminRole = Role::firstOrCreate(['name' => 'admin']);
+        $adminRole->syncPermissions($permissions);
 
-        $regular = Role::firstOrCreate(['name' => 'regular']);
-        $regular->syncPermissions([
-            'view customers',
-        ]);
+        $regularRole = Role::firstOrCreate(['name' => 'regular']);
+        $regularRole->syncPermissions(['view customers']);
 
-        $restricted = Role::firstOrCreate(['name' => 'restricted']);
-        $restricted->syncPermissions([]);
+        $restrictedRole = Role::firstOrCreate(['name' => 'restricted']);
+        $restrictedRole->syncPermissions([]);
 
-        $admin = User::firstOrCreate([
-            'name'     => 'Állison',
-            'email'    => 'gierdiaz@admin',
-            'password' => bcrypt('password'),
-        ]);
+        // Criar usuário admin
+        $admin = User::updateOrCreate(
+            ['email' => 'gierdiaz@admin'],
+            [
+                'name' => 'Állison',
+                'password' => bcrypt('password'),
+                'role' => 'admin',
+            ]
+        );
 
-        $admin->assignRole($role);
+        $admin->assignRole($adminRole);
 
-        $regular = User::create([
-            'name'     => 'Regular User',
-            'email'    => 'user@example.com',
-            'password' => bcrypt('password'),
-            'role'     => 'admin',
-        ]);
+        // Criar usuário regular
+        $regularUser = User::updateOrCreate(
+            ['email' => 'user@example.com'],
+            [
+                'name' => 'Regular User',
+                'password' => bcrypt('password'),
+                'role' => 'regular',
+            ]
+        );
 
-        $regular->givePermissionTo('view customers');
+        $regularUser->assignRole($regularRole);
     }
 }

@@ -26,22 +26,22 @@ Route::middleware(['auth:sanctum'])->group(function () {
         ->name('customers.index');
 
     Route::get('customers/{customer}', [CustomerController::class, 'show'])
-        ->middleware('can:view customers')
+        ->middleware('can:view customers,App\Models\Customer')
         ->name('customers.show');
 
     // Rotas para criar clientes
     Route::post('customers', [CustomerController::class, 'store'])
-        ->middleware('can:create customers')
+        ->middleware('can:create customers,App\Models\Customer')
         ->name('customers.store');
 
     // Rotas para atualizar clientes
     Route::put('customers/{customer}', [CustomerController::class, 'update'])
-        ->middleware('can:update customers')
+        ->middleware('can:update customers,customer')
         ->name('customers.update');
 
     // Rotas para excluir clientes
     Route::delete('customers/{customer}', [CustomerController::class, 'destroy'])
-        ->middleware('can:delete customers')
+        ->middleware('can:delete customers,customer')
         ->name('customers.destroy');
 
     // Rota para atribuir acesso a um usuário específico

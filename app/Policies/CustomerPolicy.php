@@ -2,43 +2,48 @@
 
 namespace App\Policies;
 
-use App\Models\{Customer, User};
+use App\Models\Customer;
+use App\Models\User;
+use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Log;
 
 class CustomerPolicy
 {
-    public function view(User $user, Customer $customer): bool
+    use HandlesAuthorization;
+
+    public function view(User $user): bool
     {
-        return $user->hasPermissionTo('view customers');
+        return $user->can('view customers');
     }
 
     public function create(User $user): bool
     {
-        return $user->hasPermissionTo('create customers');
+        Log::info('Checking if user can create customers', ['user_id' => $user->id]);
+        return $user->can('create customers');
     }
 
     public function update(User $user, Customer $customer): bool
     {
-        return $user->hasPermissionTo('update customers');
+        return $user->can('update customers');
     }
 
     public function delete(User $user, Customer $customer): bool
     {
-        return $user->hasPermissionTo('delete customers');
+        return $user->can('delete customers');
     }
 
-    public function assignAccess(User $user, Customer $customer): bool
+    public function assignAccess(User $user): bool
     {
-        return $user->hasPermissionTo('assign_access_customer');
+        return $user->can('assign_access_customer');
     }
 
-    public function revokeAccess(User $user, Customer $customer): bool
+    public function revokeAccess(User $user): bool
     {
-        return $user->hasPermissionTo('revoke_access_customer');
+        return $user->can('revoke_access_customer');
     }
 
-    public function revokeAllAccess(User $user, Customer $customer): bool
+    public function revokeAllAccess(User $user): bool
     {
-        return $user->hasPermissionTo('revoke_all_access_customer');
+        return $user->can('revoke_all_access_customer');
     }
-
 }
