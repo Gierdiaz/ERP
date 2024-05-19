@@ -1,0 +1,6 @@
+[2024-05-19 14:36:50] local.INFO: User has admin role.  
+[2024-05-19 14:36:50] local.INFO: User has permission to view customers.  
+[2024-05-19 14:39:43] local.INFO: User does not have admin role.  
+[2024-05-19 14:39:43] local.INFO: User does not have permission to view customers.  
+[2024-05-19 14:43:56] local.INFO: User does not have admin role.  
+[2024-05-19 14:43:56] local.INFO: User does not have permission to view customers.  

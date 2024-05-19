@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use App\Models\{Permission, Role, User};
 use Illuminate\Database\Seeder;
 
-class UserTableSeeder extends Seeder
+class PermissionTableSeeder extends Seeder
 {
     public function run(): void
     {
@@ -42,6 +42,11 @@ class UserTableSeeder extends Seeder
                 'password' => bcrypt('password'),
             ]
         );
+
+        $token = $admin->createToken('TokenName')->plainTextToken;
+
+        echo 'Token: ' . $token . PHP_EOL;
+
         $admin->assignRole($adminRole);
 
         // Criando usuário regular

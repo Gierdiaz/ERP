@@ -21,11 +21,21 @@ class CustomerController extends Controller
         $this->customerRepository = $customerRepository;
     }
 
-    public function index(): JsonResponse
+    public function index(Request $request, $id): JsonResponse
     {
+        $user = User::find($id);
+
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+
+        if (!$user->hasRole('admin')) {
+            return response()->json(['message' => 'Unauthorized'], 403);
+        }
+
         $this->authorize('view', Customer::class);
 
-        $customers = $this->customerRepository->getAll();
+        $customers = $this->customerRepository->getAll($user);
 
         return response()->json(['data' => CustomerResource::collection($customers)], 200);
     }
@@ -41,7 +51,7 @@ class CustomerController extends Controller
 
     public function store(CustomerFormRequest $request): JsonResponse
     {
-        // $this->authorize('create', Customer::class);
+        $this->authorize('create', Customer::class);
 
         DB::beginTransaction();
 

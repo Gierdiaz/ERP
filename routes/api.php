@@ -17,12 +17,12 @@ Route::middleware('auth')->group(function () {
     Route::get('email/verify/resend', [VerificationController::class, 'resend'])->name('verification.resend');
 });
 
-Route::middleware(['auth:sanctum'])->group(function () {
+Route::middleware(['auth:sanctum', 'role:admin'])->group(function () {
     Route::get('jsonplaceholder', [CustomerController::class, '__invoke']);
 
     // Rotas para visualizar clientes
-    Route::get('customers', [CustomerController::class, 'index'])
-        ->middleware('can:view customers')
+    Route::get('customers/{id}', [CustomerController::class, 'index'])
+        ->middleware('can:view customers,App\Models\Customer')
         ->name('customers.index');
 
     Route::get('customers/{customer}', [CustomerController::class, 'show'])

@@ -11,12 +11,12 @@ class CustomerPolicy
 
     public function view(User $user): bool
     {
-        return $user->can('view customers');
+        return $user->hasRole('admin') || $user->hasPermissionTo('view customers');
     }
 
     public function create(User $user): bool
     {
-        return $user->hasRole('admin') || $user->hasPermissionTo('create customers');
+        return $user->hasRole('admin') || $user->hasPermissionTo('create customers');;
         //return $user->role === 'admin';
         //return $user->hasRole('admin');
         //return $user->hasPermissionTo('create customers');
