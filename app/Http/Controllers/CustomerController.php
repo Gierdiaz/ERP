@@ -21,7 +21,7 @@ class CustomerController extends Controller
         $this->customerRepository = $customerRepository;
     }
 
-    public function index(Request $request, $id): JsonResponse
+    public function index(string $id): JsonResponse
     {
         $user = User::find($id);
 
