@@ -11,10 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        // $middleware->alias([
-        //     'role' =>  \Spatie\Permission\Middleware\RoleMiddleware::class,
-        //     //'role' =>  \App\Models\Role::class, //TODO: Observação caso o role de cima não funciona por causa da mudança no arquivo permission.php
-        // ]);
+        $middleware->alias([
+            'role' =>  \Spatie\Permission\Middleware\RoleMiddleware::class,
+            //'role' =>  \App\Models\Role::class, //TODO: Observação caso o role de cima não funciona por causa da mudança no arquivo permission.php
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
